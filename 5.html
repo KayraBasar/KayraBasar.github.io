@@ -4,21 +4,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuruluş Amacımız</title>
+    <title>Sosyal Medya Hesaplarımız</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        
         .center-text {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh; /* Tüm görünüm yüksekliğini kaplar */
             text-align: center;
         }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Butonlar arasındaki boşluk */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #8B0000; /* Koyu kırmızı buton arka planı */
+            color: #F4F4F4; /* Beyaz yazı rengi */
+            border: none; /* Buton kenarlığını kaldırır */
+            border-radius: 5px; /* Buton köşelerini yuvarlar */
+            cursor: pointer; /* Mouse işaretçisi buton üzerine geldiğinde el işaretine değişir */
+            transition: background-color 0.3s ease; /* Geçiş animasyonu ekler */
+        }
+        button:hover {
+            background-color: #000; /* Mouse butonun üzerine geldiğinde siyah arka plan */
+            color: #F4F4F4; /* Beyaz yazı rengi */
+        }
+        button:disabled {
+            background-color: #555; /* Link ekli değilse koyu gri arka plan */
+            cursor: not-allowed; /* Mouse işaretçisi buton üzerine geldiğinde yasak işaretine değişir */
+        }
     </style>
 </head>
 <body>
-    <div class="center-text">
-        <h1>BURASI ÇOK YAKINDA DOLACAK</h1>
+    <div class="header">
+        <button onclick="goHome()">Ana Sayfa</button>
     </div>
+    <h1>Başka Bir Sayfa</h1>
+    <!-- Diğer içerikler -->
+    <script>
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+    </script>
+    <div class="center-text">
+        <h1>SOSYAL MEDYA HESAPLARIMIZ</h1>
+        <div class="button-container">
+            <button id="button1" onclick="checkLink('https://mikroislemcivebilgisayarbilimleri.blogspot.com/')">Blogger</button>
+            <button id="button2" onclick="checkLink('https://www.x.com')">Twitter</button>
+            <button id="button3" onclick="checkLink('https://www.instagram.com/mibibik2024/.com')">Instagram</button>
+            <button id="button4" onclick="checkLink('https://www.mondrianandme.com/.com')">Şimdilik Gereksiz Bir Site Koyduk</button>
+            
+            <button id="button5" onclick="checkLink('https://www.youtube.com')">YouTube</button>
+        </div>
+    </div>
+    <script>
+        function checkLink(link) {
+            if (link === '#') {
+                alert('Daha aktif değil');
+            } else {
+                window.location.href = link;
+            }
+        }
+
+        document.querySelectorAll('button').forEach(button => {
+            if (button.getAttribute('onclick').includes('#')) {
+                button.disabled = true;
+            }
+        });
+    </script>
 </body>
 </html>

@@ -37,3 +37,24 @@ button:hover {
     background-color: #000; /* Mouse butonun üzerine geldiğinde siyah arka plan */
     color: #F4F4F4; /* Beyaz yazı rengi */
 }
+.header {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #8B0000; /* Koyu kırmızı buton arka planı */
+    color: #F4F4F4; /* Beyaz yazı rengi */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Geçiş animasyonu ekler */
+}
+
+button:hover {
+    background-color: #000; /* Mouse butonun üzerine geldiğinde siyah arka plan */
+    color: #F4F4F4; /* Beyaz yazı rengi */
+}
