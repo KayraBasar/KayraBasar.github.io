@@ -1,0 +1,39 @@
+body {
+    background-color: #2E2E2E; /* Koyu gri arka plan */
+    color: #F4F4F4; /* Açık gri yazı rengi */
+    font-family: 'Arial', sans-serif; /* Genel yazı tipi */
+}
+
+h1, h2, p, .even, .odd, .isim-listesi {
+    color: #FF4500; /* Parlak kırmızı yazı rengi */
+    border-style: groove;
+    border-color: #8B0000; /* Koyu kırmızı kenarlık */
+    border-radius: 2cm;
+    border-width: 5px;
+    padding: 10px; /* Kenarlık içindeki boşluk */
+    background-color: #333; /* Daha koyu arka plan rengi */
+    text-align: center; /* Yazıları ortalar */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around; /* Butonları yatay olarak aralıklı yerleştirir */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0); /* Arka plan rengini şeffaf yapar */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #8B0000; /* Koyu kırmızı buton arka planı */
+    color: #F4F4F4; /* Beyaz yazı rengi */
+    border: none; /* Buton kenarlığını kaldırır */
+    border-radius: 5px; /* Buton köşelerini yuvarlar */
+    cursor: pointer; /* Mouse işaretçisi buton üzerine geldiğinde el işaretine değişir */
+    transition: background-color 0.3s ease; /* Geçiş animasyonu ekler */
+}
+
+button:hover {
+    background-color: #000; /* Mouse butonun üzerine geldiğinde siyah arka plan */
+    color: #F4F4F4; /* Beyaz yazı rengi */
+}
