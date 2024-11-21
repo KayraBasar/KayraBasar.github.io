@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mikroişlemci ve Bilgisayar Bilimleri</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    .button-container {
+        display: flex;
+        justify-content: space-around; /* Butonları yatay olarak aralıklı yerleştirir */
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0); /* Arka plan rengini şeffaf yapar */
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+<h1>İlk site tasarımımız, hepiniz hoş geldiniz</h1>
+
+<div class="button-container">
+    <button onclick="openPage('2.html')">Neler yapacağımız</button>
+    <button onclick="openPage('3.html')">Kuruluş Amacımız</button>
+    <button onclick="openPage('4.html')">Biz kimiz</button>
+    <button onclick="openPage('5.html')">Pek Yakında</button>
+</div>
+
+<p id="p1" class="odd">Biz kimiz? Rastgele sınıfta toplanmış bir elin parmakları kadar Kişiyiz.</p>
+<p id="p2" class="even">Ne mi istiyoruz? Elbette herkesin istediği şeyi; iyi bir kulüp kurup bu alanda ilerlemek.</p>
+<p id="p3" class="odd">Yapabilir miyiz?</p>
+<p id="p4" class="even">Buna sizler karar verin.</p>
+
+<script>
+    function openPage(page) {
+        window.location.href = page;
+    }
+</script>
+</body>
+</html>
