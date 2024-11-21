@@ -1,35 +1,18 @@
 body {
-    background-color: #F4F4F4; /* Açık gri, siyah ve kırmızı ile uyumlu */
+    background-color: #2E2E2E; /* Koyu gri arka plan */
+    color: #F4F4F4; /* Açık gri yazı rengi */
+    font-family: 'Arial', sans-serif; /* Genel yazı tipi */
 }
 
-h1 {
-    color: #C00; /* Koyu kırmızı */
+h1, h2, p, .even, .odd, .isim-listesi {
+    color: #FF4500; /* Parlak kırmızı yazı rengi */
     border-style: groove;
-    border-color: #000; /* Siyah kenarlık */
+    border-color: #8B0000; /* Koyu kırmızı kenarlık */
     border-radius: 2cm;
     border-width: 5px;
     padding: 10px; /* Kenarlık içindeki boşluk */
-    background-color: #FAD4D4; /* Hafif kırmızı arka plan */
-}
-
-h2 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #900; /* Koyu kırmızı */
-    font-size: medium;
-    font-weight: lighter;
-    font-style: italic;
-}
-
-.even {
-    color: #C00; /* Koyu kırmızı */
-}
-
-.odd {
-    color: #C00; /* Koyu kırmızı */
-}
-
-.isim-listesi {
-    color: #C00; /* Koyu kırmızı */
+    background-color: #333; /* Daha koyu arka plan rengi */
+    text-align: center; /* Yazıları ortalar */
 }
 
 .button-container {
@@ -42,8 +25,8 @@ h2 {
 button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #900; /* Koyu kırmızı buton arka planı */
-    color: #FFF; /* Beyaz yazı rengi */
+    background-color: #8B0000; /* Koyu kırmızı buton arka planı */
+    color: #F4F4F4; /* Beyaz yazı rengi */
     border: none; /* Buton kenarlığını kaldırır */
     border-radius: 5px; /* Buton köşelerini yuvarlar */
     cursor: pointer; /* Mouse işaretçisi buton üzerine geldiğinde el işaretine değişir */
@@ -52,5 +35,5 @@ button {
 
 button:hover {
     background-color: #000; /* Mouse butonun üzerine geldiğinde siyah arka plan */
-    color: #FFF; /* Beyaz yazı rengi */
+    color: #F4F4F4; /* Beyaz yazı rengi */
 }
