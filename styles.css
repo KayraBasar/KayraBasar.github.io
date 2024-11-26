@@ -3,6 +3,7 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #1a1a1a;
     color: #fff;
+    overflow: hidden; /* Bira şişesi animasyonları için overflow'u gizledik */
 }
 
 header {
@@ -10,7 +11,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background: #552583; /* Lakers mor rengi */
+    background: #1e1e1e; /* Siyah arkaplan */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: fixed;
     width: 100%;
@@ -21,12 +22,13 @@ header {
 header .logo {
     font-size: 1.5em;
     font-weight: bold;
-    color: #FDB927; /* Lakers altın sarısı */
+    color: #ffcc00; /* Sarı renk */
 }
 
 nav ul {
     list-style: none;
     display: flex;
+    margin-left: auto;
     padding: 0;
 }
 
@@ -36,29 +38,29 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #fff;
+    color: #ffcc00;
     padding: 5px 10px;
     border-radius: 5px;
     transition: background 0.3s, transform 0.3s;
 }
 
 nav ul li a:hover {
-    background: #FDB927;
-    color: #552583;
+    background: #ff5733;
+    color: #fff;
     transform: scale(1.1);
 }
 
 .banner {
     text-align: center;
     padding: 150px 20px;
-    background: linear-gradient(135deg, #552583, #FDB927);
+    background: linear-gradient(135deg, #000000, #ffcc00);
     color: #fff;
     position: relative;
     top: 60px;
 }
 
 .banner h1, .banner p {
-    border: 2px solid #FDB927;
+    border: 2px solid #ffcc00;
     padding: 20px;
     border-radius: 10px;
     display: inline-block;
@@ -68,8 +70,8 @@ nav ul li a:hover {
 }
 
 button {
-    background: #FDB927;
-    color: #fff;
+    background: #ffcc00;
+    color: #000;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -78,7 +80,7 @@ button {
 }
 
 button:hover {
-    background: #FFB300;
+    background: #ffb000;
     transform: scale(1.1);
 }
 
@@ -98,53 +100,14 @@ section {
     opacity: 1;
 }
 
-.cards {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.card {
-    background: #333;
-    padding: 20px;
-    border-radius: 5px;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-form label {
-    margin-top: 10px;
-}
-
-form input, form textarea {
-    width: 300px;
-    padding: 10px;
-    margin-top: 5px;
-    border: none;
-    border-radius: 5px;
-    transition: box-shadow 0.3s;
-}
-
-form input:focus, form textarea:focus {
-    box-shadow: 0 0 5px #FDB927;
-}
-
 footer {
     text-align: center;
     padding: 20px;
-    background: #552583;
-    color: #FDB927;
+    background: #1e1e1e;
+    color: #ffcc00;
+    position: fixed; /* Alt kısma sabitlemek için */
+    bottom: 0;
+    width: 100%;
 }
 
 @keyframes slideDown {
@@ -165,4 +128,100 @@ footer {
     to {
         opacity: 1;
     }
+}
+
+#bottle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottle {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background-image: url('beer-bottle.png'); /* Bira şişesi resmini buraya ekleyin */
+    background-size: cover;
+    animation: float 10s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100vw) rotate(360deg);
+    }
+}
+
+/* Fotoğraf galerisi için stil */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: #1e1e1e; /* Siyah arkaplan */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #ffcc00;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item p {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: #000;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal:target {
+    display: flex;
 }
