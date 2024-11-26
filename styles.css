@@ -1,0 +1,168 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #552583; /* Lakers mor rengi */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #FDB927; /* Lakers altın sarısı */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+nav ul li a:hover {
+    background: #FDB927;
+    color: #552583;
+    transform: scale(1.1);
+}
+
+.banner {
+    text-align: center;
+    padding: 150px 20px;
+    background: linear-gradient(135deg, #552583, #FDB927);
+    color: #fff;
+    position: relative;
+    top: 60px;
+}
+
+.banner h1, .banner p {
+    border: 2px solid #FDB927;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 10px 0;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+button {
+    background: #FDB927;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background: #FFB300;
+    transform: scale(1.1);
+}
+
+section {
+    padding: 100px 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 2s;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background: #333;
+    padding: 20px;
+    border-radius: 5px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    margin-top: 10px;
+}
+
+form input, form textarea {
+    width: 300px;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    transition: box-shadow 0.3s;
+}
+
+form input:focus, form textarea:focus {
+    box-shadow: 0 0 5px #FDB927;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #552583;
+    color: #FDB927;
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
