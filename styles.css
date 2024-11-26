@@ -28,7 +28,7 @@ header .logo {
 nav ul {
     list-style: none;
     display: flex;
-    margin-left: auto;
+    margin-left: 1cm; /* 1 cm sola kaydırmak için */
     padding: 0;
 }
 
@@ -149,15 +149,15 @@ footer {
     height: 100px;
     background-image: url('beer-bottle.png'); /* Bira şişesi resmini buraya ekleyin */
     background-size: cover;
-    animation: float 10s infinite linear;
+    animation: fall 10s infinite linear;
 }
 
-@keyframes float {
+@keyframes fall {
     0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
+        transform: translateY(-100vh) rotate(0deg);
     }
     100% {
-        transform: translateY(-100vh) translateX(100vw) rotate(360deg);
+        transform: translateY(100vh) rotate(360deg);
     }
 }
 
@@ -224,4 +224,9 @@ footer {
 
 .modal:target {
     display: flex;
+}
+
+/* Hakkımızda kısmı için yazı rengi */
+#about p {
+    color: #fff; /* Yazı rengini beyaz yapıyoruz */
 }

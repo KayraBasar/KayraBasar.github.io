@@ -35,10 +35,30 @@ function scrollToSection(id) {
 }
 
 function createBottle() {
-    const bottleContainer = document.getElementById('bottle-container'); // Hatanın olduğu satır
+    const bottleContainer = document.getElementById('bottle-container');
     const bottle = document.createElement('div');
     bottle.classList.add('bottle');
     bottle.style.left = Math.random() * window.innerWidth + 'px';
     bottle.style.animationDuration = (Math.random() * 5 + 5) + 's';
     bottleContainer.appendChild(bottle);
 }
+
+// Arkaplan müziği için
+const audio = new Audio('background-music.mp3');
+audio.loop = true;
+
+// Müzik başlatma
+window.addEventListener('load', function() {
+    const audioTime = localStorage.getItem('audioTime');
+    if (audioTime) {
+        audio.currentTime = audioTime;
+    }
+    audio.play().catch(error => {
+        console.error("Müzik oynatma hatası: ", error);
+    });
+});
+
+window.addEventListener('beforeunload', function() {
+    audio.pause();
+    localStorage.setItem('audioTime', audio.currentTime);
+});
