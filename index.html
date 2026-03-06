@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayra Başar Karadeniz | Software Engineer & Leader</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg-main: #f5f5f7;
+            --bg-card: #ffffff;
+            --text-main: #1d1d1f;
+            --accent: #0066cc;
+            --sony-dark: #1a1a1a;
+            --border: rgba(0,0,0,0.08);
+        }
+
+        .dark {
+            --bg-main: #000000;
+            --bg-card: #1c1c1e;
+            --text-main: #f5f5f7;
+            --accent: #0a84ff;
+            --border: rgba(255,255,255,0.1);
+        }
+
+        body { background-color: var(--bg-main); color: var(--text-main); transition: all 0.8s ease; }
+
+        .bento-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            border-color: var(--accent);
+        }
+
+        .sony-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .tech-pill {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .dark .glass-nav { background: rgba(0, 0, 0, 0.7); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <span class="font-bold tracking-tighter text-xl italic">KAYRA BAŞAR KARADENİZ<span class="text-[var(--accent)]"></span></span>
+            <div class="flex items-center gap-6">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-[var(--border)]"><i class="fas fa-adjust"></i></button>
+                <a href="mailto:iletisim@adresin.com" class="bg-[var(--accent)] text-white px-5 py-2 rounded-full text-sm font-bold">İletişime Geç</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-24">
+        
+        <section class="mb-20">
+            <span class="sony-label">Software Engineer Candidate</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 leading-tight">
+                Analitik Zeka,<br><span class="text-[var(--accent)]">Mühendislik Disiplini.</span>
+            </h1>
+            <p class="text-xl text-[var(--text-muted)] max-w-2xl font-light">
+                Yazılım dünyasının hızını, Elektrik-Elektronik mühendisliğinin donanım temelleriyle birleştiriyorum. Amacım, sanayi odaklı ve toplumsal fayda yaratan akıllı sistemler geliştirmek.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="bento-card md:col-span-2">
+                <span class="sony-label">About Executive</span>
+                <h2 class="text-2xl font-bold mb-4">Vizyoner Mühendislik Yaklaşımı</h2>
+                <p class="leading-relaxed opacity-80 mb-6">
+                    Manisa Celal Bayar Üniversitesi'nde Bilgisayar Mühendisliği eğitimime devam ederken, donanım bilgisini derinleştirmek adına Elektrik-Elektronik Mühendisliği Yan Dal programını yürütüyorum. TÜBİTAK 2209-B gibi sanayi odaklı projelerde LSTM derin öğrenme modelleri ve IoT mimarileri üzerine çalışarak teorik bilgimi endüstriyel çözümlere dönüştürüyorum.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tech-pill">Deep Learning</span>
+                    <span class="tech-pill">IoT Architect</span>
+                    <span class="tech-pill">Robotics</span>
+                    <span class="tech-pill">Technical Leadership</span>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <span class="sony-label">Academic Path</span>
+                <h3 class="font-bold text-xl mb-6">Eğitim</h3>
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-sm font-bold">Bilgisayar Mühendisliği</p>
+                        <p class="text-xs opacity-60 italic">Manisa Celal Bayar Üniversitesi</p>
+                        <p class="text-[10px] mt-1 text-[var(--accent)]">2024 - Günümüz</p>
+                    </div>
+                    <div class="pt-4 border-t border-[var(--border)]">
+                        <p class="text-sm font-bold">E.E. Mühendisliği (Yan Dal)</p>
+                        <p class="text-xs opacity-60 italic">Donanım & Sinyal İşleme Odağı</p>
+                        <p class="text-[10px] mt-1 text-[var(--accent)]">Aktif Program</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="bento-card bg-[var(--sony-dark)] text-white border-none relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="sony-label text-white/50">Management & Coordination</span>
+                    <h2 class="text-3xl font-extrabold mb-4">TED Ege Bölge Başkanlığı</h2>
+                    <p class="text-sm opacity-70 mb-8 max-w-md">
+                        80+ bursiyerin operasyonel süreçlerini ve sosyal koordinasyonunu yöneterek; bütçe planlama, etkinlik yönetimi ve kriz yönetimi konularında profesyonel deneyim kazandım.
+                    </p>
+                    <div class="flex gap-8">
+                        <div><p class="text-2xl font-bold">80+</p><p class="text-[10px] uppercase opacity-50">Bursiyer</p></div>
+                        <div><p class="text-2xl font-bold">Ege</p><p class="text-[10px] uppercase opacity-50">Bölge Sorumlusu</p></div>
+                    </div>
+                </div>
+                <img src="TED_png.png" class="absolute -right-10 -bottom-10 w-64 opacity-10 pointer-events-none" alt="">
+            </div>
+
+            <div class="bento-card border-l-4 border-l-[var(--accent)]">
+                <span class="sony-label">Social Innovation</span>
+                <h3 class="text-2xl font-bold mb-4">Kıvılcım Kütüphanesi</h3>
+                <p class="text-sm leading-relaxed opacity-70 mb-6">
+                    Kurucu ortağı olduğum bu girişimle, deprem bölgelerindeki köy okullarına sadece kitap değil, **donanım ve kütüphane altyapısı** sağladık. Bu süreçte paydaş yönetimi ve saha operasyonları konularında aktif sorumluluk üstlendim.
+                </p>
+                <div class="p-4 bg-[var(--bg-main)] rounded-xl flex items-center gap-4">
+                    <i class="fas fa-truck-loading text-[var(--accent)]"></i>
+                    <p class="text-xs font-bold uppercase">Saha Operasyon Yönetimi & Lojistik</p>
+                </div>
+            </div>
+        </div>
+
+        <section id="projects">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bento-card group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="sony-label">AI / Computer Vision</span>
+                            <h3 class="text-xl font-bold">Virtual Mouse AI</h3>
+                        </div>
+                        <i class="fab fa-python text-3xl opacity-20 group-hover:opacity-100 group-hover:text-[#3776AB] transition-all"></i>
+                    </div>
+                    <p class="text-sm opacity-70 mb-6">
+                        MediaPipe ve OpenCV tabanlı, el hareketlerini asenkron şekilde bilgisayar komutlarına çeviren sistem. `PyAutoGUI` optimizasyonları ile gecikmesiz kontrol sağlar.
+                    </p>
+                    <div class="bg-black/5 dark:bg-black/40 p-4 rounded-lg font-mono text-[10px] mb-6 opacity-60">
+                        <code># Smoothing Factor Implementation<br>curr_x = prev_x + (screen_x - prev_x) / smooth_factor</code>
+                    </div>
+                </div>
+
+                <div class="bento-card group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="sony-label">Industrial IoT</span>
+                            <h3 class="text-xl font-bold">AMYS: Yoğunluk Sistemi</h3>
+                        </div>
+                        <i class="fas fa-microchip text-3xl opacity-20 group-hover:opacity-100 group-hover:text-[var(--accent)] transition-all"></i>
+                    </div>
+                    <p class="text-sm opacity-70 mb-6">
+                        TÜBİTAK 2209-B Sanayiye Yönelik Proje. ESP32 ve MQTT protokolü üzerinden akan verileri LSTM derin öğrenme modeliyle işleyerek %90+ doğrulukla doluluk tahmini yapar.
+                    </p>
+                    <div class="flex items-center gap-2 text-[var(--accent)] text-xs font-bold">
+                        <i class="fas fa-certificate"></i> TÜBİTAK 2209-B DESTEKLİ
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-24 pt-12 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="font-bold text-sm">© 2026 Kayra Başar Karadeniz</p>
+                <div id="status-clock" class="text-[10px] font-mono opacity-40 uppercase tracking-widest mt-1">LATENCY_0MS // SYNCED</div>
+            </div>
+            <div class="flex gap-6">
+                <a href="https://linkedin.com/in/kayra-ba%C5%9Far-karadeniz-8364232b0/" target="_blank" class="hover:text-[var(--accent)] transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="https://github.com/KayraBasar" target="_blank" class="hover:text-[var(--accent)] transition-colors"><i class="fab fa-github text-xl"></i></a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Tema Motoru
+        const themeBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        themeBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        if (localStorage.getItem('theme') === 'dark') html.classList.add('dark');
+
+        // Canlı Sistem Saati (Sony Aesthetic)
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('status-clock').innerText = "SYSTEM_ACTIVE // " + now.toLocaleTimeString() + " GMT+3";
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Reveal Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.bento-card').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
