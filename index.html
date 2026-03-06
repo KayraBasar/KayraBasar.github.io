@@ -1,257 +1,610 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kayra Başar Karadeniz | Software Engineer & Leader</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KBK — Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+:root{
+  --black:#080a0e;--dark:#0d1018;--panel:#111520;--panel2:#161c27;
+  --border:rgba(255,215,0,.12);--border2:rgba(255,215,0,.06);
+  --yellow:#ffd700;--yellow-dim:rgba(255,215,0,.6);--yellow-faint:rgba(255,215,0,.08);
+  --text:#d8dce8;--muted:#5a6070;--white:#f0f2f8;
+  --grid:rgba(255,215,0,.025);
+  --mono:'Space Mono',monospace;--display:'Bebas Neue',sans-serif;--body:'Barlow',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden;cursor:none}
 
-    <style>
-        :root {
-            --bg-main: #f5f5f7;
-            --bg-card: #ffffff;
-            --text-main: #1d1d1f;
-            --accent: #0066cc;
-            --sony-dark: #1a1a1a;
-            --border: rgba(0,0,0,0.08);
-        }
+/* CURSOR */
+#cursor{position:fixed;width:10px;height:10px;background:var(--yellow);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--yellow-dim);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:2px}
 
-        .dark {
-            --bg-main: #000000;
-            --bg-card: #1c1c1e;
-            --text-main: #f5f5f7;
-            --accent: #0a84ff;
-            --border: rgba(255,255,255,0.1);
-        }
+/* BG */
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(rgba(255,215,0,.007) 1px,transparent 1px),linear-gradient(90deg,rgba(255,215,0,.007) 1px,transparent 1px);background-size:80px 80px,80px 80px,20px 20px,20px 20px}
+body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px)}
 
-        body { background-color: var(--bg-main); color: var(--text-main); transition: all 0.8s ease; }
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:56px;background:rgba(8,10,14,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2)}
+.nav-id{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.12em;display:flex;align-items:center;gap:.75rem}
+.nav-id .bracket{color:var(--yellow)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-coords{font-family:var(--mono);font-size:.58rem;color:var(--muted);letter-spacing:.08em;display:flex;align-items:center;gap:1.5rem}
+.live{display:flex;align-items:center;gap:.4rem;color:var(--yellow-dim)}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);animation:pulse-y 1.5s ease-in-out infinite}
+@keyframes pulse-y{0%,100%{opacity:1;box-shadow:0 0 4px var(--yellow)}50%{opacity:.3;box-shadow:none}}
 
-        .bento-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2rem;
-            height: 100%;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+/* LANG TOGGLE */
+.lang-btn{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;
+  display:flex;align-items:center;gap:0;
+  border:1px solid var(--border);overflow:hidden;cursor:pointer;
+}
+.lang-btn span{
+  padding:5px 10px;color:var(--muted);background:transparent;
+  transition:background .2s,color .2s;user-select:none;
+}
+.lang-btn span.active{background:var(--yellow);color:var(--black);font-weight:700}
+.lang-btn span:hover:not(.active){color:var(--yellow)}
 
-        .bento-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-            border-color: var(--accent);
-        }
+.nav-cta{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border:1px solid var(--yellow);color:var(--yellow);background:transparent;text-decoration:none;transition:background .2s,color .2s}
+.nav-cta:hover{background:var(--yellow);color:var(--black)}
 
-        .sony-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            display: block;
-        }
+/* MAIN */
+main{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:80px 3rem 6rem}
 
-        .tech-pill {
-            background: var(--bg-main);
-            border: 1px solid var(--border);
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 600;
-        }
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:end;margin-bottom:5rem;padding-top:4rem;min-height:calc(100vh - 200px)}
+.hero-tag{font-family:var(--mono);font-size:.6rem;color:var(--yellow);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+.hero-tag::before{content:'';width:40px;height:1px;background:var(--yellow)}
+.hero-name{font-family:var(--display);font-size:clamp(5rem,10vw,9rem);line-height:.92;letter-spacing:.02em;color:var(--white)}
+.hero-name .surname{color:transparent;-webkit-text-stroke:1px var(--yellow-dim);display:block}
+.hero-subtitle{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-top:1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.hero-subtitle::after{content:'';flex:1;height:1px;background:var(--border);max-width:120px}
+.hero-desc{font-size:.95rem;font-weight:300;line-height:1.8;color:rgba(216,220,232,.7);max-width:520px}
 
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .dark .glass-nav { background: rgba(0, 0, 0, 0.7); }
-    </style>
+/* HERO RIGHT */
+.hero-right{border:1px solid var(--border);background:var(--panel);padding:2rem;position:relative}
+.hero-right::before{content:'SYS_INFO';position:absolute;top:-1px;left:1.5rem;font-family:var(--mono);font-size:.55rem;color:var(--yellow);letter-spacing:.15em;background:var(--panel);padding:0 .5rem;transform:translateY(-50%)}
+.blueprint-corner{position:absolute;width:12px;height:12px}
+.blueprint-corner.tl{top:-1px;left:-1px;border-top:2px solid var(--yellow);border-left:2px solid var(--yellow)}
+.blueprint-corner.tr{top:-1px;right:-1px;border-top:2px solid var(--yellow);border-right:2px solid var(--yellow)}
+.blueprint-corner.bl{bottom:-1px;left:-1px;border-bottom:2px solid var(--yellow);border-left:2px solid var(--yellow)}
+.blueprint-corner.br{bottom:-1px;right:-1px;border-bottom:2px solid var(--yellow);border-right:2px solid var(--yellow)}
+.sys-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--border2);font-family:var(--mono)}
+.sys-row:last-child{border-bottom:none}
+.sys-key{font-size:.58rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.sys-val{font-size:.68rem;color:var(--text);text-align:right;max-width:220px}
+.sys-val.accent{color:var(--yellow)}
+
+/* SECTION MARKER */
+.s-marker{display:flex;align-items:center;gap:1rem;margin:4rem 0 1.5rem;font-family:var(--mono);font-size:.6rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
+.s-marker .num{color:var(--yellow);font-size:.75rem}
+.s-marker::after{content:'';flex:1;height:1px;background:var(--border2)}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border2)}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border2)}
+.grid-7-5{display:grid;grid-template-columns:7fr 5fr;gap:1px;background:var(--border2)}
+.grid-5-7{display:grid;grid-template-columns:5fr 7fr;gap:1px;background:var(--border2)}
+@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-right{display:none}.grid-2,.grid-3,.grid-7-5,.grid-5-7{grid-template-columns:1fr}}
+
+/* PANEL */
+.panel{background:var(--panel);padding:2rem;position:relative;overflow:hidden;border-left:2px solid transparent;transition:border-color .3s}
+.panel:hover{border-left-color:var(--yellow)}
+.panel::before{content:attr(data-label);position:absolute;top:0;left:0;font-family:var(--mono);font-size:.5rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;background:var(--panel2);padding:3px 10px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2)}
+.panel-title{font-family:var(--display);font-size:2.2rem;letter-spacing:.04em;color:var(--white);margin-top:1.5rem;margin-bottom:.75rem;line-height:1}
+.panel-sub{font-family:var(--mono);font-size:.6rem;color:var(--yellow-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+.panel-body{font-size:.875rem;font-weight:300;line-height:1.8;color:rgba(216,220,232,.65)}
+
+/* STATS */
+.stats{display:flex;gap:2.5rem;margin-top:1.5rem}
+.stat-n{font-family:var(--display);font-size:3rem;color:var(--yellow);line-height:1}
+.stat-l{font-family:var(--mono);font-size:.52rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:.2rem}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.2rem}
+.tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--border);color:var(--muted);transition:border-color .25s,color .25s}
+.panel:hover .tag{border-color:rgba(255,215,0,.3);color:var(--text)}
+
+/* CODE */
+.code-panel{background:#060810;border:1px solid var(--border);padding:1.2rem 1.5rem;font-family:var(--mono);font-size:.68rem;line-height:2;margin-top:1.25rem;position:relative;overflow-x:auto}
+.code-panel::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--yellow);opacity:.4}
+.cc{color:#405060}.ck{color:#e8c547}.cv{color:var(--text)}.cn{color:#e8874a}.cs{color:#68b89a}.cm{color:var(--yellow-dim)}
+
+/* CERT LIST */
+.cert-list{margin-top:1.25rem;display:flex;flex-direction:column;gap:0}
+.cert-row{display:flex;align-items:center;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--border2);transition:background .2s,padding-left .2s;cursor:default}
+.cert-row:last-child{border-bottom:none}
+.cert-row:hover{background:var(--yellow-faint);padding-left:.5rem}
+.cert-num{font-family:var(--mono);font-size:.6rem;color:var(--yellow);opacity:.5;width:24px;flex-shrink:0}
+.cert-info-wrap{flex:1}
+.cert-n{font-size:.82rem;font-weight:500;color:var(--text);line-height:1.2}
+.cert-iss{font-family:var(--mono);font-size:.55rem;color:var(--muted);letter-spacing:.06em;margin-top:.15rem}
+.cert-yr{font-family:var(--mono);font-size:.58rem;color:var(--yellow-dim);flex-shrink:0}
+.cert-link{color:var(--yellow);text-decoration:none;font-size:.6rem;margin-left:.5rem;opacity:.6;transition:opacity .2s}
+.cert-link:hover{opacity:1}
+
+/* ══════════════════════════════════════════
+   SKILL MATRIX — WITH SVG LOGOS
+══════════════════════════════════════════ */
+.skill-matrix{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(108px,1fr));
+  gap:1px;background:var(--border2);
+  margin-top:1.25rem;
+}
+.skill-cell{
+  background:var(--panel);
+  padding:1.2rem .8rem;
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+  transition:background .25s;
+  cursor:default;
+}
+.skill-cell:hover{background:var(--yellow-faint)}
+
+/* SVG logo wrapper — greyscale by default, color on hover */
+.skill-logo{
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  filter:grayscale(1) brightness(.5);
+  transition:filter .3s,transform .3s;
+}
+.skill-cell:hover .skill-logo{
+  filter:grayscale(0) brightness(1);
+  transform:scale(1.12);
+}
+.skill-logo svg{width:100%;height:100%}
+
+.skill-name{
+  font-family:var(--mono);font-size:.55rem;
+  color:var(--muted);text-transform:uppercase;
+  letter-spacing:.08em;text-align:center;
+  transition:color .25s;
+}
+.skill-cell:hover .skill-name{color:var(--text)}
+
+/* TED */
+.ted-panel{background:var(--panel);position:relative;overflow:hidden;padding:2rem;border-left:2px solid transparent;transition:border-color .3s}
+.ted-panel:hover{border-left-color:var(--yellow)}
+.ted-panel::before{content:attr(data-label);position:absolute;top:0;left:0;font-family:var(--mono);font-size:.5rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;background:var(--panel2);padding:3px 10px;border-bottom:1px solid var(--border2);border-right:1px solid var(--border2)}
+.ted-bg{position:absolute;bottom:-1.5rem;right:-1rem;font-family:var(--display);font-size:10rem;color:rgba(255,215,0,.03);line-height:1;pointer-events:none;user-select:none}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--yellow);color:var(--yellow);margin-top:1.25rem}
+
+/* PROJ NUM */
+.proj-num{font-family:var(--display);font-size:5rem;line-height:1;color:rgba(255,215,0,.06);position:absolute;bottom:.5rem;right:1rem;pointer-events:none}
+
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-top:5rem;padding:2.5rem 3rem;max-width:1280px;margin-left:auto;margin-right:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-id{font-family:var(--mono);font-size:.6rem;color:var(--muted);letter-spacing:.1em}
+.footer-id span{color:var(--yellow)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{color:var(--muted);font-size:1rem;transition:color .2s;text-decoration:none}
+.footer-links a:hover{color:var(--yellow)}
+
+/* COORDS */
+#coords{position:fixed;bottom:1.5rem;left:1.5rem;z-index:50;font-family:var(--mono);font-size:.55rem;color:var(--muted);letter-spacing:.1em;pointer-events:none}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* HERO ANIM */
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag{animation:fadeIn .7s .1s both}
+.hero-name{animation:fadeIn .8s .2s both}
+.hero-subtitle{animation:fadeIn .7s .4s both}
+.hero-desc{animation:fadeIn .7s .55s both}
+.hero-right{animation:fadeIn .8s .35s both}
+
+/* TYPEWRITER CURSOR */
+.tw::after{content:'_';color:var(--yellow);animation:blink-c .8s step-end infinite}
+@keyframes blink-c{0%,100%{opacity:1}50%{opacity:0}}
+
+/* LANG TRANSITION */
+[data-tr],[data-en]{transition:opacity .2s}
+.lang-fade{opacity:0}
+</style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-            <span class="font-bold tracking-tighter text-xl italic">KAYRA BAŞAR KARADENİZ<span class="text-[var(--accent)]"></span></span>
-            <div class="flex items-center gap-6">
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-[var(--border)]"><i class="fas fa-adjust"></i></button>
-                <a href="mailto:iletisim@adresin.com" class="bg-[var(--accent)] text-white px-5 py-2 rounded-full text-sm font-bold">İletişime Geç</a>
-            </div>
-        </div>
-    </nav>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="coords">X:0000 Y:0000</div>
 
-    <main class="max-w-7xl mx-auto px-6 pt-32 pb-24">
-        
-        <section class="mb-20">
-            <span class="sony-label">Software Engineer Candidate</span>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 leading-tight">
-                Analitik Zeka,<br><span class="text-[var(--accent)]">Mühendislik Disiplini.</span>
-            </h1>
-            <p class="text-xl text-[var(--text-muted)] max-w-2xl font-light">
-                Yazılım dünyasının hızını, Elektrik-Elektronik mühendisliğinin donanım temelleriyle birleştiriyorum. Amacım, sanayi odaklı ve toplumsal fayda yaratan akıllı sistemler geliştirmek.
-            </p>
-        </section>
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-id"><span class="bracket">[</span>KBK.ENG.v2026<span class="bracket">]</span></div>
+  <div class="nav-coords">
+    <span>MCBÜ · MANİSA · TR</span>
+    <span class="live"><div class="live-dot"></div><span id="nclock">--:--:--</span></span>
+  </div>
+  <div class="nav-right">
+    <!-- LANGUAGE TOGGLE -->
+    <div class="lang-btn" id="langBtn">
+      <span id="l-tr" class="active">TR</span>
+      <span id="l-en">EN</span>
+    </div>
+    <a href="mailto:kayrabasar@example.com" class="nav-cta" data-tr="İletişime Geç" data-en="Contact">İletişime Geç</a>
+  </div>
+</nav>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div class="bento-card md:col-span-2">
-                <span class="sony-label">About Executive</span>
-                <h2 class="text-2xl font-bold mb-4">Vizyoner Mühendislik Yaklaşımı</h2>
-                <p class="leading-relaxed opacity-80 mb-6">
-                    Manisa Celal Bayar Üniversitesi'nde Bilgisayar Mühendisliği eğitimime devam ederken, donanım bilgisini derinleştirmek adına Elektrik-Elektronik Mühendisliği Yan Dal programını yürütüyorum. TÜBİTAK 2209-B gibi sanayi odaklı projelerde LSTM derin öğrenme modelleri ve IoT mimarileri üzerine çalışarak teorik bilgimi endüstriyel çözümlere dönüştürüyorum.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                    <span class="tech-pill">Deep Learning</span>
-                    <span class="tech-pill">IoT Architect</span>
-                    <span class="tech-pill">Robotics</span>
-                    <span class="tech-pill">Technical Leadership</span>
-                </div>
-            </div>
+<main>
 
-            <div class="bento-card">
-                <span class="sony-label">Academic Path</span>
-                <h3 class="font-bold text-xl mb-6">Eğitim</h3>
-                <div class="space-y-6">
-                    <div>
-                        <p class="text-sm font-bold">Bilgisayar Mühendisliği</p>
-                        <p class="text-xs opacity-60 italic">Manisa Celal Bayar Üniversitesi</p>
-                        <p class="text-[10px] mt-1 text-[var(--accent)]">2024 - Günümüz</p>
-                    </div>
-                    <div class="pt-4 border-t border-[var(--border)]">
-                        <p class="text-sm font-bold">E.E. Mühendisliği (Yan Dal)</p>
-                        <p class="text-xs opacity-60 italic">Donanım & Sinyal İşleme Odağı</p>
-                        <p class="text-[10px] mt-1 text-[var(--accent)]">Aktif Program</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag" data-tr="Yazılım Mühendisi Adayı" data-en="Software Engineer Candidate">Yazılım Mühendisi Adayı</div>
+    <h1 class="hero-name">KAYRA<br>BAŞAR<span class="surname">KARADENİZ</span></h1>
+    <div class="hero-subtitle tw">SYSTEM ONLINE</div>
+    <p class="hero-desc" data-tr="Bilgisayar &amp; E.E. mühendisliğini; LSTM derin öğrenme, IoT mimarileri ve saha liderliğiyle birleştiren mühendis adayı. TÜBİTAK 2209-B destekli endüstriyel AR-GE ve sanayi odaklı çözümler."
+       data-en="Engineering candidate combining Computer Science &amp; Electrical Engineering with LSTM deep learning, IoT architectures and field leadership. Industry-focused R&amp;D supported by TÜBİTAK 2209-B.">
+      Bilgisayar &amp; E.E. mühendisliğini; LSTM derin öğrenme, IoT mimarileri ve saha liderliğiyle birleştiren mühendis adayı. TÜBİTAK 2209-B destekli endüstriyel AR-GE ve sanayi odaklı çözümler.
+    </p>
+  </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div class="bento-card bg-[var(--sony-dark)] text-white border-none relative overflow-hidden">
-                <div class="relative z-10">
-                    <span class="sony-label text-white/50">Management & Coordination</span>
-                    <h2 class="text-3xl font-extrabold mb-4">TED Ege Bölge Başkanlığı</h2>
-                    <p class="text-sm opacity-70 mb-8 max-w-md">
-                        80+ bursiyerin operasyonel süreçlerini ve sosyal koordinasyonunu yöneterek; bütçe planlama, etkinlik yönetimi ve kriz yönetimi konularında profesyonel deneyim kazandım.
-                    </p>
-                    <div class="flex gap-8">
-                        <div><p class="text-2xl font-bold">80+</p><p class="text-[10px] uppercase opacity-50">Bursiyer</p></div>
-                        <div><p class="text-2xl font-bold">Ege</p><p class="text-[10px] uppercase opacity-50">Bölge Sorumlusu</p></div>
-                    </div>
-                </div>
-                <img src="TED_png.png" class="absolute -right-10 -bottom-10 w-64 opacity-10 pointer-events-none" alt="">
-            </div>
+  <div class="hero-right">
+    <div class="blueprint-corner tl"></div><div class="blueprint-corner tr"></div>
+    <div class="blueprint-corner bl"></div><div class="blueprint-corner br"></div>
+    <div class="sys-row"><span class="sys-key">STATUS</span><span class="sys-val accent" data-tr="● STAJ BAŞVURULARINDA AKTİF" data-en="● AVAILABLE FOR INTERNSHIP">● STAJ BAŞVURULARINDA AKTİF</span></div>
+    <div class="sys-row"><span class="sys-key" data-tr="ÜNİVERSİTE" data-en="UNIVERSITY">ÜNİVERSİTE</span><span class="sys-val">Manisa Celal Bayar Üniversitesi</span></div>
+    <div class="sys-row"><span class="sys-key" data-tr="PROGRAMLAR" data-en="PROGRAMS">PROGRAMLAR</span><span class="sys-val" data-tr="CS + E.E. Yan Dal (Çift Program)" data-en="CS + E.E. Minor (Dual Program)">CS + E.E. Yan Dal (Çift Program)</span></div>
+    <div class="sys-row"><span class="sys-key" data-tr="ARAŞTIRMA" data-en="RESEARCH">ARAŞTIRMA</span><span class="sys-val accent">TÜBİTAK 2209-B · Aktif</span></div>
+    <div class="sys-row"><span class="sys-key" data-tr="SANAYİ ORTAĞI" data-en="INDUSTRY PARTNER">SANAYİ ORTAĞI</span><span class="sys-val">ENM Teknoloji A.Ş.</span></div>
+    <div class="sys-row"><span class="sys-key">TARGET TRL</span><span class="sys-val accent">3 → 5 (AMYS Prototype)</span></div>
+    <div class="sys-row"><span class="sys-key" data-tr="SERTİFİKALAR" data-en="CERTIFICATIONS">SERTİFİKALAR</span><span class="sys-val">9 (Amazon×6, Erasmus+, MEB×2)</span></div>
+    <div class="sys-row"><span class="sys-key" data-tr="KONUM" data-en="LOCATION">KONUM</span><span class="sys-val">Manisa, Türkiye · GMT+3</span></div>
+  </div>
+</section>
 
-            <div class="bento-card border-l-4 border-l-[var(--accent)]">
-                <span class="sony-label">Social Innovation</span>
-                <h3 class="text-2xl font-bold mb-4">Kıvılcım Kütüphanesi</h3>
-                <p class="text-sm leading-relaxed opacity-70 mb-6">
-                    Kurucu ortağı olduğum bu girişimle, deprem bölgelerindeki köy okullarına sadece kitap değil, **donanım ve kütüphane altyapısı** sağladık. Bu süreçte paydaş yönetimi ve saha operasyonları konularında aktif sorumluluk üstlendim.
-                </p>
-                <div class="p-4 bg-[var(--bg-main)] rounded-xl flex items-center gap-4">
-                    <i class="fas fa-truck-loading text-[var(--accent)]"></i>
-                    <p class="text-xs font-bold uppercase">Saha Operasyon Yönetimi & Lojistik</p>
-                </div>
-            </div>
-        </div>
+<!-- ═══ 01 PROJECTS ═══ -->
+<div class="s-marker"><span class="num">01</span><span data-tr="Teknik Projeler" data-en="Technical Projects">Teknik Projeler</span></div>
 
-        <section id="projects">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bento-card group">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <span class="sony-label">AI / Computer Vision</span>
-                            <h3 class="text-xl font-bold">Virtual Mouse AI</h3>
-                        </div>
-                        <i class="fab fa-python text-3xl opacity-20 group-hover:opacity-100 group-hover:text-[#3776AB] transition-all"></i>
-                    </div>
-                    <p class="text-sm opacity-70 mb-6">
-                        MediaPipe ve OpenCV tabanlı, el hareketlerini asenkron şekilde bilgisayar komutlarına çeviren sistem. `PyAutoGUI` optimizasyonları ile gecikmesiz kontrol sağlar.
-                    </p>
-                    <div class="bg-black/5 dark:bg-black/40 p-4 rounded-lg font-mono text-[10px] mb-6 opacity-60">
-                        <code># Smoothing Factor Implementation<br>curr_x = prev_x + (screen_x - prev_x) / smooth_factor</code>
-                    </div>
-                </div>
+<div class="grid-7-5" style="margin-bottom:1px">
 
-                <div class="bento-card group">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <span class="sony-label">Industrial IoT</span>
-                            <h3 class="text-xl font-bold">AMYS: Yoğunluk Sistemi</h3>
-                        </div>
-                        <i class="fas fa-microchip text-3xl opacity-20 group-hover:opacity-100 group-hover:text-[var(--accent)] transition-all"></i>
-                    </div>
-                    <p class="text-sm opacity-70 mb-6">
-                        TÜBİTAK 2209-B Sanayiye Yönelik Proje. ESP32 ve MQTT protokolü üzerinden akan verileri LSTM derin öğrenme modeliyle işleyerek %90+ doğrulukla doluluk tahmini yapar.
-                    </p>
-                    <div class="flex items-center gap-2 text-[var(--accent)] text-xs font-bold">
-                        <i class="fas fa-certificate"></i> TÜBİTAK 2209-B DESTEKLİ
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="panel reveal" data-label="PROJECT_A · INDUSTRIAL IOT">
+    <div class="proj-num">01</div>
+    <div class="panel-sub" data-tr="TÜBİTAK 2209-B · ENM Teknoloji A.Ş. İş Birliği" data-en="TÜBİTAK 2209-B · ENM Technology Co. Collaboration">TÜBİTAK 2209-B · ENM Teknoloji A.Ş. İş Birliği</div>
+    <div class="panel-title">AMYS</div>
+    <p class="panel-body"
+       data-tr="Akıllı Mekân Yoğunluk Sistemi. ESP32 ve MQTT üzerinden gelen akustik, sıcaklık, nem ve ışık verilerini LSTM derin öğrenme modeliyle işleyerek %90+ doğrulukla doluluk tahmini. KVKK uyumlu, kamera gerektirmeyen mimari. Hedef: TRL 3 → TRL 5."
+       data-en="Smart Space Density System. Processes acoustic, temperature, humidity and light sensor data from ESP32 via MQTT through an LSTM deep learning model to predict occupancy with 90%+ accuracy. GDPR-compliant, camera-free architecture. Target: TRL 3 → TRL 5.">
+      Akıllı Mekân Yoğunluk Sistemi. ESP32 ve MQTT üzerinden gelen akustik, sıcaklık, nem ve ışık verilerini LSTM derin öğrenme modeliyle işleyerek %90+ doğrulukla doluluk tahmini. KVKK uyumlu, kamera gerektirmeyen mimari. Hedef: TRL 3 → TRL 5.
+    </p>
+    <div class="code-panel">
+      <span class="cc"># LSTM sensor fusion — AMYS core loop</span><br>
+      <span class="ck">for</span> <span class="cv">epoch</span> <span class="ck">in</span> <span class="ck">range</span>(<span class="cn">EPOCHS</span>):<br>
+      &nbsp;&nbsp;<span class="cv">X</span> = fuse([<span class="cm">dB</span>, <span class="cm">temp</span>, <span class="cm">humidity</span>, <span class="cm">lux</span>, <span class="cm">ir_count</span>])<br>
+      &nbsp;&nbsp;<span class="cv">y_pred</span> = model.forward(<span class="cv">X</span>, hidden=<span class="cv">h_prev</span>)<br>
+      &nbsp;&nbsp;<span class="ck">if</span> mae(<span class="cv">y_pred</span>, <span class="cv">y_true</span>) &lt; <span class="cn">.10</span>: <span class="cc"># &lt;10% MAE criterion</span><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;mqtt.publish(<span class="cs">"amys/density"</span>, <span class="cv">score</span>)
+    </div>
+    <div class="badge"><i class="fas fa-certificate"></i><span data-tr="TÜBİTAK 2209-B Destekli" data-en="TÜBİTAK 2209-B Funded">TÜBİTAK 2209-B Destekli</span></div>
+    <div class="tags" style="margin-top:1rem">
+      <span class="tag">ESP32</span><span class="tag">MQTT</span><span class="tag">LSTM</span>
+      <span class="tag">TensorFlow</span><span class="tag">PostgreSQL</span><span class="tag">Leaflet.js</span>
+    </div>
+  </div>
 
-        <footer class="mt-24 pt-12 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-                <p class="font-bold text-sm">© 2026 Kayra Başar Karadeniz</p>
-                <div id="status-clock" class="text-[10px] font-mono opacity-40 uppercase tracking-widest mt-1">LATENCY_0MS // SYNCED</div>
-            </div>
-            <div class="flex gap-6">
-                <a href="https://linkedin.com/in/kayra-ba%C5%9Far-karadeniz-8364232b0/" target="_blank" class="hover:text-[var(--accent)] transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
-                <a href="https://github.com/KayraBasar" target="_blank" class="hover:text-[var(--accent)] transition-colors"><i class="fab fa-github text-xl"></i></a>
-            </div>
-        </footer>
-    </main>
+  <div class="panel reveal" data-label="PROJECT_B · COMPUTER VISION">
+    <div class="proj-num">02</div>
+    <div class="panel-sub">HCI · OpenCV · MediaPipe</div>
+    <div class="panel-title">Virtual Mouse AI</div>
+    <p class="panel-body"
+       data-tr="El hareketlerini 5 jest moduna çeviren gerçek zamanlı HCI sistemi. Sol/sağ tık, drag, fare hareketi ve yumruk yönüyle ses kontrolü. PyAutoGUI smoothing factor ile sıfır gecikme."
+       data-en="Real-time HCI system translating hand gestures into 5 control modes: left/right click, drag, cursor movement, and volume control via fist direction. Zero latency via PyAutoGUI smoothing factor.">
+      El hareketlerini 5 jest moduna çeviren gerçek zamanlı HCI sistemi. Sol/sağ tık, drag, fare hareketi ve yumruk yönüyle ses kontrolü. PyAutoGUI smoothing factor ile sıfır gecikme.
+    </p>
+    <div class="code-panel">
+      <span class="cc"># Smoothing: lag eliminasyonu</span><br>
+      <span class="cv">curr_x</span> = <span class="cv">prev_x</span> +<br>
+      &nbsp;&nbsp;(<span class="cv">screen_x</span> - <span class="cv">prev_x</span>) / <span class="cn">smooth_factor</span><br>
+      <span class="cc"># dist = math.hypot(Δx, Δy)</span><br>
+      <span class="ck">if</span> <span class="cv">dist</span> &lt; <span class="cn">35</span>: <span class="cc"># pinch_threshold</span><br>
+      &nbsp;&nbsp;pyautogui.mouseDown(<span class="cs">'left'</span>)
+    </div>
+    <div class="tags"><span class="tag">OpenCV</span><span class="tag">MediaPipe</span><span class="tag">PyAutoGUI</span><span class="tag">asyncio</span></div>
+  </div>
 
-    <script>
-        // Tema Motoru
-        const themeBtn = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        themeBtn.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-        });
-        if (localStorage.getItem('theme') === 'dark') html.classList.add('dark');
+</div>
 
-        // Canlı Sistem Saati (Sony Aesthetic)
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('status-clock').innerText = "SYSTEM_ACTIVE // " + now.toLocaleTimeString() + " GMT+3";
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+<!-- ═══ 02 LEADERSHIP ═══ -->
+<div class="s-marker" style="margin-top:4rem"><span class="num">02</span><span data-tr="Liderlik &amp; Sosyal Etki" data-en="Leadership &amp; Social Impact">Liderlik &amp; Sosyal Etki</span></div>
 
-        // Reveal Animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                }
-            });
-        }, { threshold: 0.1 });
+<div class="grid-5-7">
+  <div class="ted-panel reveal" data-label="ROLE · TED EGE">
+    <div class="ted-bg">TED</div>
+    <div class="panel-sub" style="margin-top:1.5rem" data-tr="Bölge Başkanlığı" data-en="Regional Presidency">Bölge Başkanlığı</div>
+    <div class="panel-title">TED Ege</div>
+    <p class="panel-body"
+       data-tr="80+ bursiyerin operasyonel koordinasyonu. 40 kişilik GSB ekip liderliği. Bütçe, etkinlik ve kriz yönetimi."
+       data-en="Operational coordination of 80+ scholars. Leadership of a 40-person team. Budget, event and crisis management.">
+      80+ bursiyerin operasyonel koordinasyonu. 40 kişilik GSB ekip liderliği. Bütçe, etkinlik ve kriz yönetimi.
+    </p>
+    <div class="stats">
+      <div><div class="stat-n">80+</div><div class="stat-l" data-tr="Bursiyer" data-en="Scholars">Bursiyer</div></div>
+      <div><div class="stat-n">40</div><div class="stat-l" data-tr="GSB Ekibi" data-en="GSB Team">GSB Ekibi</div></div>
+    </div>
+  </div>
 
-        document.querySelectorAll('.bento-card').forEach(el => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(20px)";
-            observer.observe(el);
-        });
-    </script>
+  <div class="panel reveal" data-label="INITIATIVE · SOCIAL">
+    <div class="panel-sub" style="margin-top:1.5rem" data-tr="Sosyal Girişimcilik · Kurucu Ortak" data-en="Social Entrepreneurship · Co-Founder">Sosyal Girişimcilik · Kurucu Ortak</div>
+    <div class="panel-title">Kıvılcım Kütüphanesi</div>
+    <p class="panel-body"
+       data-tr="Deprem bölgelerindeki köy okullarına donanım ve kütüphane altyapısı sağlayan girişim. Saha operasyonu, lojistik yönetimi ve paydaş koordinasyonu."
+       data-en="Initiative providing hardware and library infrastructure to village schools in earthquake-affected areas. Field operations, logistics management and stakeholder coordination.">
+      Deprem bölgelerindeki köy okullarına donanım ve kütüphane altyapısı sağlayan girişim. Saha operasyonu, lojistik yönetimi ve paydaş koordinasyonu.
+    </p>
+    <div class="tags">
+      <span class="tag" data-tr="Saha Operasyonu" data-en="Field Operations">Saha Operasyonu</span>
+      <span class="tag" data-tr="Lojistik" data-en="Logistics">Lojistik</span>
+      <span class="tag" data-tr="Paydaş Yönetimi" data-en="Stakeholder Mgmt">Paydaş Yönetimi</span>
+      <span class="tag" data-tr="Bütçe" data-en="Budget">Bütçe</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 03 EDUCATION ═══ -->
+<div class="s-marker" style="margin-top:4rem"><span class="num">03</span><span data-tr="Eğitim &amp; Programlar" data-en="Education &amp; Programs">Eğitim &amp; Programlar</span></div>
+
+<div class="grid-3">
+  <div class="panel reveal" data-label="EDU_01">
+    <div class="panel-sub" style="margin-top:1.5rem" data-tr="2024 → Günümüz" data-en="2024 → Present">2024 → Günümüz</div>
+    <div class="panel-title" style="font-size:1.6rem" data-tr="Bilgisayar Mühendisliği" data-en="Computer Engineering">Bilgisayar Mühendisliği</div>
+    <p class="panel-body">Manisa Celal Bayar Üniversitesi</p>
+  </div>
+  <div class="panel reveal" data-label="EDU_02">
+    <div class="panel-sub" style="margin-top:1.5rem" data-tr="Yan Dal · Aktif" data-en="Minor · Active">Yan Dal · Aktif</div>
+    <div class="panel-title" style="font-size:1.6rem" data-tr="E.E. Mühendisliği" data-en="Electrical Engineering">E.E. Mühendisliği</div>
+    <p class="panel-body" data-tr="Donanım &amp; Sinyal İşleme Odağı" data-en="Hardware &amp; Signal Processing Focus">Donanım &amp; Sinyal İşleme Odağı</p>
+  </div>
+  <div class="panel reveal" data-label="EDU_03">
+    <div class="panel-sub" style="margin-top:1.5rem" data-tr="Erasmus+ · Tem–Ağu 2025" data-en="Erasmus+ · Jul–Aug 2025">Erasmus+ · Tem–Ağu 2025</div>
+    <div class="panel-title" style="font-size:1.6rem">Youthpass</div>
+    <p class="panel-body" data-tr="TED Üniversitesi · Cultural Ambassadors · Ankara · 41 Katılımcı" data-en="TED University · Cultural Ambassadors · Ankara · 41 Participants">TED Üniversitesi · Cultural Ambassadors · Ankara · 41 Katılımcı</p>
+  </div>
+</div>
+
+<!-- ═══ 04 CERTS ═══ -->
+<div class="s-marker" style="margin-top:4rem"><span class="num">04</span><span data-tr="Sertifikalar" data-en="Certifications">Sertifikalar</span></div>
+
+<div class="grid-2">
+  <div class="panel reveal" data-label="CERTS · AMAZON × COURSERA">
+    <div style="margin-top:1.5rem"></div>
+    <div class="cert-list">
+      <div class="cert-row"><div class="cert-num">01</div><div class="cert-info-wrap"><div class="cert-n">Data Structures &amp; Algorithms</div><div class="cert-iss">Amazon · Coursera</div></div><div class="cert-yr">Aug 2025<a class="cert-link" href="https://coursera.org/verify/2F5L9PV2FIH4" target="_blank">↗</a></div></div>
+      <div class="cert-row"><div class="cert-num">02</div><div class="cert-info-wrap"><div class="cert-n">Database Mgmt with Java &amp; SQL</div><div class="cert-iss">Amazon · Coursera</div></div><div class="cert-yr">Aug 2025<a class="cert-link" href="https://coursera.org/verify/9JK71A3B91FW" target="_blank">↗</a></div></div>
+      <div class="cert-row"><div class="cert-num">03</div><div class="cert-info-wrap"><div class="cert-n">Programming with Java</div><div class="cert-iss">Amazon · Coursera</div></div><div class="cert-yr">Aug 2025<a class="cert-link" href="https://coursera.org/verify/NQ6Q6VT77OVL" target="_blank">↗</a></div></div>
+      <div class="cert-row"><div class="cert-num">04</div><div class="cert-info-wrap"><div class="cert-n">Full Stack Web Development</div><div class="cert-iss">Amazon · Coursera</div></div><div class="cert-yr">Aug 2025<a class="cert-link" href="https://coursera.org/verify/RX14JMQX8EMA" target="_blank">↗</a></div></div>
+      <div class="cert-row"><div class="cert-num">05</div><div class="cert-info-wrap"><div class="cert-n">Generative AI in SW Development</div><div class="cert-iss">Amazon · Coursera</div></div><div class="cert-yr">Aug 2025<a class="cert-link" href="https://coursera.org/verify/DB7JY5UG1TUQ" target="_blank">↗</a></div></div>
+      <div class="cert-row"><div class="cert-num">06</div><div class="cert-info-wrap"><div class="cert-n">Application Development</div><div class="cert-iss">Amazon · Coursera</div></div><div class="cert-yr">Sep 2025<a class="cert-link" href="https://coursera.org/verify/P4WB1WY9X7EA" target="_blank">↗</a></div></div>
+    </div>
+  </div>
+  <div class="panel reveal" data-label="CERTS · OTHER">
+    <div style="margin-top:1.5rem"></div>
+    <div class="cert-list">
+      <div class="cert-row"><div class="cert-num">07</div><div class="cert-info-wrap"><div class="cert-n">Erasmus+ Youthpass</div><div class="cert-iss" data-tr="TED Üniversitesi · CABS · 41 Katılımcı" data-en="TED University · CABS · 41 Participants">TED Üniversitesi · CABS · 41 Katılımcı</div></div><div class="cert-yr">2025</div></div>
+      <div class="cert-row"><div class="cert-num">08</div><div class="cert-info-wrap"><div class="cert-n" data-tr="Temel İSG Kurs Bitirme" data-en="Occupational Health &amp; Safety — Course Completion">Temel İSG Kurs Bitirme</div><div class="cert-iss" data-tr="T.C. MEB · 8 Saat" data-en="Ministry of Education · 8 Hours">T.C. MEB · 8 Saat</div></div><div class="cert-yr" data-tr="Mar 2026" data-en="Mar 2026">Mar 2026</div></div>
+      <div class="cert-row"><div class="cert-num">09</div><div class="cert-info-wrap"><div class="cert-n" data-tr="İSG Katılım Belgesi" data-en="OHS Participation Certificate">İSG Katılım Belgesi</div><div class="cert-iss" data-tr="T.C. MEB · 3 Saat" data-en="Ministry of Education · 3 Hours">T.C. MEB · 3 Saat</div></div><div class="cert-yr" data-tr="Şub 2026" data-en="Feb 2026">Şub 2026</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 05 SKILLS ═══ -->
+<div class="s-marker" style="margin-top:4rem"><span class="num">05</span><span data-tr="Yetkinlikler" data-en="Technical Skills">Yetkinlikler</span></div>
+
+<div class="panel reveal" data-label="TECH_STACK" style="padding-bottom:1.5rem">
+  <div style="margin-top:1.5rem"></div>
+  <div class="skill-matrix">
+
+    <!-- Python -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="py1" x1="12.959%" y1="12.039%" x2="79.639%" y2="78.201%"><stop stop-color="#387EB8" offset="0%"/><stop stop-color="#366994" offset="100%"/></linearGradient><linearGradient id="py2" x1="19.128%" y1="20.579%" x2="90.742%" y2="88.429%"><stop stop-color="#FFE052" offset="0%"/><stop stop-color="#FFC331" offset="100%"/></linearGradient></defs><path d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.413 36.171 63.077 36.171 63.077h21.573v-30.336s-1.162-36.237 35.568-36.237h61.37s34.418.55 34.418-33.248V33.877C189.245 33.877 191.621.072 126.916.072zm-34.171 19.72c6.129 0 11.065 4.914 11.065 10.987 0 6.076-4.936 10.99-11.065 10.99-6.127 0-11.065-4.914-11.065-10.99 0-6.073 4.938-10.987 11.065-10.987z" fill="url(#py1)"/><path d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.414-36.171-63.078-36.171-63.078h-21.573v30.336s1.162 36.237-35.568 36.237h-61.37s-34.418-.551-34.418 33.248v56.149c0-.001-2.376 33.807 62.33 33.807zm34.171-19.72c-6.129 0-11.065-4.914-11.065-10.987 0-6.076 4.936-10.99 11.065-10.99 6.127 0 11.065 4.914 11.065 10.99 0 6.073-4.938 10.987-11.065 10.987z" fill="url(#py2)"/></svg>
+      </div>
+      <span class="skill-name">Python</span>
+    </div>
+
+    <!-- TensorFlow -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><path d="M27.35 38.68v51.63l11.11 6.42V45.1l25.3 14.61v51.64l11.1 6.41V59.71l11.1 6.42v51.63l11.11-6.41V9.08L27.35 38.68zm50.62-14.62L64.01 31.5l-13.97-8.06L64.01 15.4l13.96 8.06z" fill="#FF6F00"/></svg>
+      </div>
+      <span class="skill-name">TensorFlow</span>
+    </div>
+
+    <!-- OpenCV -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="22" r="18" fill="#3986CC"/><circle cx="22" cy="72" r="18" fill="#EF3924"/><circle cx="78" cy="72" r="18" fill="#53AD47"/><circle cx="50" cy="38" r="8" fill="#fff"/><circle cx="36" cy="62" r="8" fill="#fff"/><circle cx="64" cy="62" r="8" fill="#fff"/></svg>
+      </div>
+      <span class="skill-name">OpenCV</span>
+    </div>
+
+    <!-- ESP32 -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="25" width="60" height="50" rx="4" fill="#E7352B"/><rect x="30" y="35" width="40" height="30" rx="2" fill="#111"/><text x="50" y="55" font-size="11" fill="#ffd700" text-anchor="middle" font-family="monospace" font-weight="bold">ESP32</text><rect x="8" y="35" width="10" height="4" rx="1" fill="#999"/><rect x="8" y="45" width="10" height="4" rx="1" fill="#999"/><rect x="8" y="55" width="10" height="4" rx="1" fill="#999"/><rect x="82" y="35" width="10" height="4" rx="1" fill="#999"/><rect x="82" y="45" width="10" height="4" rx="1" fill="#999"/><rect x="82" y="55" width="10" height="4" rx="1" fill="#999"/></svg>
+      </div>
+      <span class="skill-name">ESP32</span>
+    </div>
+
+    <!-- MQTT -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 10 L90 50 L50 90 L10 50 Z" fill="none" stroke="#660066" stroke-width="6"/><circle cx="50" cy="50" r="8" fill="#660066"/><path d="M50 50 Q30 30 10 50" fill="none" stroke="#9900cc" stroke-width="4"/><path d="M50 50 Q50 25 50 10" fill="none" stroke="#9900cc" stroke-width="4"/><path d="M50 50 Q70 30 90 50" fill="none" stroke="#9900cc" stroke-width="4"/><text x="50" y="78" font-size="10" fill="#660066" text-anchor="middle" font-family="monospace" font-weight="bold">MQTT</text></svg>
+      </div>
+      <span class="skill-name">MQTT</span>
+    </div>
+
+    <!-- Java -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 256 346" xmlns="http://www.w3.org/2000/svg"><path d="M82.554 267.473s-13.198 7.675 9.393 10.272c27.369 3.122 41.356 2.675 71.517-3.034 0 0 7.93 4.972 19.003 9.279-67.611 28.977-153.019-1.679-99.913-16.517z" fill="#5382A1"/><path d="M74.292 229.659s-14.803 10.958 7.805 13.296c29.236 3.016 52.324 3.263 92.276-4.43 0 0 5.526 5.602 14.215 8.666-81.747 23.904-172.798 1.885-114.296-17.532z" fill="#5382A1"/><path d="M143.942 165.515c16.66 19.18-4.377 36.44-4.377 36.44s42.301-21.837 22.874-49.183c-18.144-25.5-32.059-38.172 43.268-81.858 0 0-118.238 29.53-61.765 94.6z" fill="#E76F00"/><path d="M233.364 295.442s9.767 8.047-10.757 14.273c-39.026 11.823-162.432 15.393-196.714.471-12.323-5.36 10.787-12.8 18.056-14.362 7.581-1.637 11.914-1.337 11.914-1.337-13.705-9.655-88.583 18.957-38.034 27.15 137.853 22.356 251.292-10.066 215.535-26.195z" fill="#5382A1"/><path d="M88.9 190.48s-62.771 14.91-22.228 20.323c17.118 2.292 51.243 1.774 83.03-.89 25.978-2.19 52.063-6.85 52.063-6.85s-9.16 3.923-15.787 8.448c-63.744 16.765-186.886 8.966-151.435-8.183 29.981-14.608 54.357-12.848 54.357-12.848z" fill="#5382A1"/><path d="M201.506 253.422c64.8-33.675 34.839-66.03 13.927-61.67-5.126 1.066-7.411 1.99-7.411 1.99s1.903-2.98 5.537-4.27c41.37-14.545 73.187 42.897-13.355 65.647 0 0 1.007-.895 1.302-1.697z" fill="#E76F00"/><path d="M162.439.371s35.887 35.9-34.037 91.101c-56.071 44.282-12.786 69.53-.023 98.377-32.73-29.53-56.75-55.526-40.635-79.72 23.695-35.64 89.312-52.89 74.695-109.758z" fill="#E76F00"/><path d="M95.268 330.791c62.199 3.982 157.716-2.209 159.974-31.64 0 0-4.348 11.158-51.404 20.018-53.088 10.015-118.511 8.847-157.317 2.426 0 0 7.95 6.58 48.747 9.196z" fill="#5382A1"/></svg>
+      </div>
+      <span class="skill-name">Java</span>
+    </div>
+
+    <!-- SQL -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="28" rx="38" ry="14" fill="#00758F"/><rect x="12" y="28" width="76" height="14" fill="#00758F"/><ellipse cx="50" cy="42" rx="38" ry="14" fill="#00758F"/><rect x="12" y="42" width="76" height="18" fill="#00758F"/><ellipse cx="50" cy="60" rx="38" ry="14" fill="#F29111"/><rect x="12" y="60" width="76" height="14" fill="#F29111"/><ellipse cx="50" cy="74" rx="38" ry="14" fill="#F29111"/></svg>
+      </div>
+      <span class="skill-name">SQL</span>
+    </div>
+
+    <!-- Git -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M251.17 116.6 139.4 4.82a16.49 16.49 0 0 0-23.31 0l-23.21 23.2 29.44 29.44a19.57 19.57 0 0 1 24.8 24.96l28.37 28.37a19.61 19.61 0 1 1-11.75 11.04L137.28 95.4v69.64a19.62 19.62 0 1 1-16.16-.55V94.2a19.61 19.61 0 0 1-10.64-25.72L81.24 39.41 4.83 115.8a16.49 16.49 0 0 0 0 23.32l111.77 111.77a16.49 16.49 0 0 0 23.32 0L251.17 139.9a16.49 16.49 0 0 0 0-23.3z" fill="#F05032"/></svg>
+      </div>
+      <span class="skill-name">Git</span>
+    </div>
+
+    <!-- Linux -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M225.44 190.575c-3.024-9.464-8.232-13.528-12.6-17.024-2.268-1.84-4.409-3.567-6.244-6.15-1.979-2.8-2.74-6.483-3.527-10.282-1.26-6.128-2.67-13.044-9.082-18.32-5.044-4.187-11.485-5.952-18.3-7.814-5.327-1.47-10.83-2.99-15.693-5.97-6.624-4.022-11.208-11.218-15.64-18.18-4.327-6.793-8.402-13.21-14.218-17.052-5.374-3.554-11.29-4.03-16.944-4.487-4.59-.372-8.934-.723-12.62-2.75-4.34-2.38-7.55-6.93-10.9-11.67-4.2-5.978-8.538-12.16-16.004-14.988-7.084-2.67-14.62-.854-21.916.904-5.8 1.403-11.275 2.729-15.856 1.638-3.818-.918-7.31-3.566-10.974-6.34-5.42-4.1-11.028-8.34-19.207-8.178-8.168.156-16.03 4.663-21.77 8.977-5.003 3.756-8.718 7.67-10.085 10.83-1.64 3.797-.634 7.38.413 9.93.702 1.69 1.553 2.986 2.138 3.856a77.31 77.31 0 0 0 .614.876l.2.277-.01.128-.08.867-.047.55.303.46c.22.33.44.657.658.979.576.858 1.117 1.663 1.532 2.502.73 1.48 1.018 2.966.696 4.853-.194 1.13-.644 2.3-1.08 3.43-.556 1.43-1.124 2.901-1.262 4.48-.276 3.146 1.029 6.133 2.29 9.015.64 1.456 1.3 2.96 1.738 4.447.458 1.558.542 2.94.263 4.384-.282 1.467-1.002 2.988-1.766 4.595-1.26 2.64-2.567 5.368-2.556 8.58.007 2.09.608 4.032 1.188 5.91.424 1.36.82 2.646.91 3.913.12 1.667-.314 3.473-.843 5.574-.694 2.72-1.48 5.803-1.21 9.47.262 3.565 1.623 7.04 2.938 10.393.995 2.543 1.935 4.945 2.322 7.296.392 2.385.164 4.605-.71 7.134-.664 1.94-1.623 3.893-2.548 5.782-1.695 3.44-3.296 6.69-3.39 10.295-.065 2.484.677 4.816 1.395 7.067.683 2.152 1.39 4.376 1.39 6.713 0 .924-.104 1.905-.203 2.85-.248 2.387-.505 4.855.644 7.058 1.282 2.44 3.983 3.866 6.593 5.245 2.1 1.105 4.087 2.15 5.416 3.56 1.245 1.32 1.928 3.047 2.65 4.888.876 2.233 1.869 4.764 4.178 6.702 2.34 1.962 5.225 2.576 8.012 3.17 2.065.44 4.017.857 5.61 1.747 2.016 1.116 3.537 3.083 5.107 5.12 2.338 3.026 4.993 6.455 10.047 8.008 4.682 1.44 9.727.454 14.61-.502 3.773-.73 7.336-1.42 10.504-1.013 2.798.356 5.437 1.655 8.176 3.004 4.028 1.978 8.196 4.024 13.523 3.99 5.33-.034 9.452-2.14 13.43-4.18 2.71-1.384 5.26-2.69 8.048-3.08 3.17-.44 6.737.197 10.513.86 4.896.858 9.965 1.745 14.64.25 5.006-1.614 7.603-5.09 9.877-8.147 1.527-2.066 2.97-4.016 4.976-5.18 1.586-.914 3.548-1.37 5.625-1.85 2.796-.65 5.693-1.322 7.99-3.33 2.27-1.984 3.214-4.534 4.047-6.78.682-1.847 1.325-3.59 2.545-4.928 1.308-1.437 3.28-2.515 5.37-3.655 2.594-1.42 5.28-2.89 6.52-5.352 1.12-2.225.826-4.698.54-7.086-.16-1.366-.317-2.666-.2-3.797.148-1.443.78-2.876 1.44-4.375 1.07-2.42 2.144-4.917 1.856-7.945zm-125.286-118.53c-.2-1.77-.086-3.577.326-5.236.11.197.228.39.352.577 2.394 3.615 6.452 5.89 11.547 6.41 2.46.254 5.097.143 7.648.034 2.89-.122 5.896-.25 8.506.27 4.29.853 7.14 3.39 8.73 7.75.518 1.407.803 3.024.998 4.84-3.49-1.87-6.9-3.02-10.204-3.49-7.05-.99-13.5.796-19.16 5.317-1.79 1.41-3.483 3.095-5.12 5.003-.66-2.226-1.18-4.503-1.54-6.756-.706-4.384-.675-8.745-.083-11.72z" fill="#fff"/><path d="M128.003 8.038C62.034 8.038 8.038 62.034 8.038 128c0 65.966 54 119.965 119.965 119.965S247.96 193.966 247.96 128C247.96 62.034 193.972 8.038 128.003 8.038z" fill="#000"/><path d="M167.97 147.86c-5.044-4.187-11.485-5.952-18.3-7.814-5.327-1.47-10.83-2.99-15.693-5.97-6.624-4.022-11.208-11.218-15.64-18.18-4.327-6.793-8.402-13.21-14.218-17.052-5.374-3.554-11.29-4.03-16.944-4.487-4.59-.372-8.934-.723-12.62-2.75-4.34-2.38-7.55-6.93-10.9-11.67C59.335 74.035 55 67.85 47.534 65.02c-7.084-2.67-14.62-.854-21.916.904-5.8 1.403-11.275 2.729-15.856 1.638.5 1.75 1.046 3.48 1.644 5.193a34.655 34.655 0 0 0 3.524-1.103c6.617-2.63 13.114-3.965 19.32-3.965 2.546 0 5.07.255 7.504.795 7.226 1.607 12.77 5.968 17.13 13.337 3.57 6.02 5.547 13.13 7.457 20.01 1.965 7.054 3.994 14.345 8.154 19.974 4.578 6.22 10.72 9.37 16.653 12.413 4.09 2.075 7.95 4.04 11.134 6.796 3.804 3.29 5.79 7.26 6.9 11.32-3.49-1.87-6.9-3.02-10.204-3.49-7.05-.99-13.5.796-19.16 5.317-5.24 4.18-9.23 10.41-12.7 15.93-2.87 4.57-5.58 8.9-8.765 11.48-3.74 3.03-8.455 3.848-12.94 4.63-6.86 1.2-13.952 2.443-18.073 9.273a17.484 17.484 0 0 0-2.328 7.71c1.49 2.66 3.084 5.252 4.773 7.78.386-3.856 1.862-7.36 4.255-10.154 3.386-3.97 7.916-5.54 12.296-7.058 5.94-2.072 12.085-4.216 15.906-10.804 2.78-4.787 4.188-10.383 5.55-15.79 1.39-5.5 2.828-11.19 5.75-15.605 4.235-6.41 10.31-8.57 16.7-6.47 2.69.88 5.367 2.612 7.96 5.14.78.77 1.548 1.62 2.298 2.54-3.278 4.487-5.028 9.918-5.11 15.754-.113 7.97 2.757 16.15 7.777 22.42 5.086 6.354 12.068 10.116 19.62 10.587 7.37.46 14.654-2.47 20.52-8.256 5.683-5.607 9.528-13.508 10.508-21.915.475-4.03.29-8.113-.528-12.018 4.78 3.4 8.04 8.266 9.97 14.93 1.48 5.11 1.682 10.852 1.876 16.41.286 8.235.58 16.75 4.88 23.55 4.39 6.94 12.048 10.944 18.68 14.348l.1.052c5.42 2.826 10.56 5.5 13.59 9.704.618.862 1.17 1.803 1.654 2.817a119.35 119.35 0 0 0 7.05-5.6c-.743-.877-1.537-1.712-2.386-2.508-4.4-4.134-9.98-6.603-15.37-8.997-6.54-2.9-13.3-5.898-17.267-11.945-3.573-5.42-4.63-12.526-5.6-19.37-.78-5.485-1.585-11.15-3.83-16.2-3.214-7.2-8.763-11.933-16.04-13.756a23.684 23.684 0 0 0-1.52-4.68c-2.12-5.22-5.89-9.283-11.21-12.07z" fill="#fff"/></svg>
+      </div>
+      <span class="skill-name">Linux</span>
+    </div>
+
+    <!-- LSTM / Deep Learning -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="50" r="7" fill="#FF6F00"/>
+          <circle cx="50" cy="20" r="7" fill="#FF6F00"/>
+          <circle cx="50" cy="80" r="7" fill="#FF6F00"/>
+          <circle cx="80" cy="50" r="7" fill="#FF6F00"/>
+          <circle cx="50" cy="50" r="8" fill="#FF9800"/>
+          <line x1="20" y1="50" x2="50" y2="50" stroke="#FF6F00" stroke-width="2.5"/>
+          <line x1="50" y1="20" x2="50" y2="50" stroke="#FF6F00" stroke-width="2.5"/>
+          <line x1="50" y1="80" x2="50" y2="50" stroke="#FF6F00" stroke-width="2.5"/>
+          <line x1="80" y1="50" x2="50" y2="50" stroke="#FF6F00" stroke-width="2.5"/>
+          <line x1="20" y1="50" x2="50" y2="20" stroke="#FF6F00" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <line x1="20" y1="50" x2="50" y2="80" stroke="#FF6F00" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <line x1="80" y1="50" x2="50" y2="20" stroke="#FF6F00" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <line x1="80" y1="50" x2="50" y2="80" stroke="#FF6F00" stroke-width="1.5" stroke-dasharray="3,2"/>
+        </svg>
+      </div>
+      <span class="skill-name">LSTM / DL</span>
+    </div>
+
+    <!-- MediaPipe -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 8 L92 32 L92 68 L50 92 L8 68 L8 32 Z" fill="none" stroke="#00BCD4" stroke-width="4"/><path d="M50 20 L80 36 L80 64 L50 80 L20 64 L20 36 Z" fill="none" stroke="#00BCD4" stroke-width="3"/><circle cx="50" cy="50" r="14" fill="#00BCD4"/><circle cx="50" cy="50" r="6" fill="#fff"/></svg>
+      </div>
+      <span class="skill-name">MediaPipe</span>
+    </div>
+
+    <!-- Leaflet.js -->
+    <div class="skill-cell">
+      <div class="skill-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 8 C50 8 22 35 22 58 C22 74.5 34.5 87 50 87 C65.5 87 78 74.5 78 58 C78 35 50 8 50 8Z" fill="#199900"/><path d="M50 87 L46 97 L54 97 Z" fill="#199900"/><circle cx="50" cy="58" r="10" fill="#fff" opacity=".6"/></svg>
+      </div>
+      <span class="skill-name">Leaflet.js</span>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-id">[KBK.2026] © KAYRA BAŞAR KARADENİZ · <span id="fclock">--:--:--</span> GMT+3</div>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/kayra-ba%C5%9Far-karadeniz-8364232b0/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/KayraBasar" target="_blank"><i class="fab fa-github"></i></a>
+  </div>
+</footer>
+
+<script>
+/* ─── CURSOR ─────────────────────────────── */
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring'),coords=document.getElementById('coords');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  coords.textContent=`X:${String(mx).padStart(4,'0')} Y:${String(my).padStart(4,'0')}`;
+});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.querySelectorAll('a,button,.panel,.cert-row,.skill-cell').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(255,215,0,.8)'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(255,215,0,.4)'});
+});
+
+/* ─── CLOCK ──────────────────────────────── */
+function tick(){const t=new Date().toLocaleTimeString('tr-TR');document.getElementById('nclock').textContent=t;document.getElementById('fclock').textContent=t;}
+setInterval(tick,1000);tick();
+
+/* ─── REVEAL ─────────────────────────────── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);io.unobserve(e.target);}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ─── TYPEWRITER ─────────────────────────── */
+const tw=document.querySelector('.tw');
+const twWords={tr:['SİSTEM AKTİF','STAJ BAŞVURULARINDA','MÜHENDİSLİK MODU: AÇIK'],en:['SYSTEM ONLINE','AVAILABLE FOR INTERNSHIP','ENGINEER MODE: ACTIVE']};
+let wi=0,ci=0,del=false;
+function type(){
+  const lang=document.documentElement.lang;
+  const words=twWords[lang]||twWords.tr;
+  const w=words[wi%words.length];
+  if(!del){tw.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(type,1800);return}}
+  else{tw.textContent=w.slice(0,--ci);if(ci===0){del=false;wi++;setTimeout(type,400);return}}
+  setTimeout(type,del?50:80);
+}
+setTimeout(type,1200);
+
+/* ─── LANGUAGE TOGGLE ────────────────────── */
+let lang='tr';
+
+function applyLang(l){
+  lang=l;
+  document.documentElement.lang=l;
+  // toggle active class
+  document.getElementById('l-tr').classList.toggle('active',l==='tr');
+  document.getElementById('l-en').classList.toggle('active',l==='en');
+  // fade out
+  document.body.style.opacity='.4';
+  document.body.style.transition='opacity .15s';
+  setTimeout(()=>{
+    // swap all tagged elements
+    document.querySelectorAll(`[data-${l}]`).forEach(el=>{
+      const val=el.getAttribute(`data-${l}`);
+      if(el.tagName==='A'||el.tagName==='BUTTON'){el.textContent=val}
+      else{el.innerHTML=val}
+    });
+    // section markers
+    document.querySelectorAll('.s-marker span:last-child[data-tr]').forEach(el=>{
+      el.innerHTML=el.getAttribute(`data-${l}`)||el.innerHTML;
+    });
+    document.body.style.opacity='1';
+  },150);
+  localStorage.setItem('kbk-lang',l);
+}
+
+document.getElementById('langBtn').addEventListener('click',e=>{
+  const clicked=e.target.closest('span');
+  if(!clicked) return;
+  const newLang=clicked.id==='l-tr'?'tr':'en';
+  if(newLang!==lang) applyLang(newLang);
+});
+
+// restore saved lang
+const savedLang=localStorage.getItem('kbk-lang');
+if(savedLang&&savedLang!=='tr') applyLang(savedLang);
+</script>
 </body>
 </html>
