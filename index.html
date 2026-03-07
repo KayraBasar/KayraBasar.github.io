@@ -3,7 +3,34 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>KBK — Engineering Portfolio</title>
+
+<!-- ═══ SEO META ═══ -->
+<title>Kayra Başar Karadeniz — Engineering Portfolio</title>
+<meta name="description" content="MCBÜ Bilgisayar Mühendisliği öğrencisi. TÜBİTAK 2209-B araştırmacısı. AI, IoT ve gömülü sistemler alanında sanayi odaklı projeler."/>
+<meta name="keywords" content="Kayra Başar Karadeniz, software engineer, bilgisayar mühendisi, TÜBİTAK, AMYS, LSTM, IoT, ESP32, portfolio"/>
+<meta name="author" content="Kayra Başar Karadeniz"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://kayrabasar.github.io/"/>
+
+<!-- ═══ OPEN GRAPH (LinkedIn, Facebook, WhatsApp) ═══ -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://kayrabasar.github.io/"/>
+<meta property="og:title" content="Kayra Başar Karadeniz — Engineering Portfolio"/>
+<meta property="og:description" content="MCBÜ Bilgisayar Mühendisliği öğrencisi. TÜBİTAK 2209-B araştırmacısı. AI, IoT ve gömülü sistemler."/>
+<meta property="og:image" content="https://kayrabasar.github.io/og-image.png"/>
+<meta property="og:locale" content="tr_TR"/>
+<meta property="og:locale:alternate" content="en_US"/>
+
+<!-- ═══ TWITTER CARD ═══ -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Kayra Başar Karadeniz — Engineering Portfolio"/>
+<meta name="twitter:description" content="MCBÜ Bilgisayar Mühendisliği öğrencisi. TÜBİTAK 2209-B araştırmacısı."/>
+<meta name="twitter:image" content="https://kayrabasar.github.io/og-image.png"/>
+
+<!-- ═══ FAVICON — SVG inline ═══ -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23080a0e'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='700' font-size='18' fill='%23ffd700'>K</text></svg>"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23080a0e'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='700' font-size='18' fill='%23ffd700'>K</text></svg>"/>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
@@ -21,8 +48,8 @@ html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden;cursor:none}
 
 /* CURSOR */
-#cursor{position:fixed;width:10px;height:10px;background:var(--yellow);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
-#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--yellow-dim);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+#cursor{position:fixed;width:8px;height:8px;background:var(--yellow);border-radius:50%;pointer-events:none;z-index:9999;left:-20px;top:-20px;transform:translate(-50%,-50%)}
+#cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--yellow-dim);border-radius:50%;pointer-events:none;z-index:9998;left:-20px;top:-20px;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:2px}
 
 /* BG */
@@ -92,7 +119,80 @@ main{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:80px 3re
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border2)}
 .grid-7-5{display:grid;grid-template-columns:7fr 5fr;gap:1px;background:var(--border2)}
 .grid-5-7{display:grid;grid-template-columns:5fr 7fr;gap:1px;background:var(--border2)}
-@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-right{display:none}.grid-2,.grid-3,.grid-7-5,.grid-5-7{grid-template-columns:1fr}}
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+
+/* TABLET — 900px */
+@media(max-width:900px){
+  /* grids → single column */
+  .hero{grid-template-columns:1fr;min-height:auto;gap:2rem}
+  .hero-right{display:none}
+  .grid-2,.grid-3,.grid-7-5,.grid-5-7{grid-template-columns:1fr}
+
+  /* about inner grid */
+  .about-grid{grid-template-columns:1fr !important}
+
+  /* nav */
+  nav{padding:0 1.5rem}
+  .nav-coords{display:none}
+
+  /* main padding */
+  main{padding:72px 1.5rem 4rem}
+  footer{padding:2rem 1.5rem}
+
+  /* skill matrix — fewer columns */
+  .skill-matrix{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+}
+
+/* LARGE PHONE — 600px */
+@media(max-width:600px){
+  /* hero name */
+  .hero-name{font-size:clamp(3.5rem,16vw,5.5rem)}
+  .hero-desc{font-size:.875rem}
+
+  /* nav — hide lang btn label text, keep toggle */
+  .nav-coords{display:none}
+  .nav-cta{display:none}
+
+  /* panels */
+  .panel,.ted-panel{padding:1.5rem 1.25rem}
+  .panel-title{font-size:1.75rem}
+  .panel-body{font-size:.82rem}
+
+  /* stats — smaller */
+  .stat-n{font-size:2.2rem}
+
+  /* code block */
+  .code-panel{font-size:.6rem;padding:1rem 1.1rem}
+
+  /* skill matrix */
+  .skill-matrix{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
+  .skill-logo{width:28px;height:28px}
+  .skill-name{font-size:.5rem}
+
+  /* cert rows */
+  .cert-yr{display:none}
+
+  /* section marker */
+  .s-marker{font-size:.55rem}
+
+  /* footer */
+  footer{flex-direction:column;align-items:flex-start;gap:.75rem}
+  #coords{display:none}
+}
+
+/* SMALL PHONE — 400px */
+@media(max-width:400px){
+  nav{padding:0 1rem}
+  main{padding:64px 1rem 3rem}
+  .hero-name{font-size:clamp(3rem,18vw,4.5rem)}
+  .hero-tag{font-size:.55rem}
+  .hero-subtitle{font-size:.6rem}
+  .panel,.ted-panel{padding:1.25rem 1rem}
+  .tags{gap:.3rem}
+  .tag{font-size:.52rem;padding:2px 7px}
+  .lang-btn span{padding:4px 8px;font-size:.58rem}
+  .skill-matrix{grid-template-columns:repeat(4,1fr)}
+}
 
 /* PANEL */
 .panel{background:var(--panel);padding:2rem;position:relative;overflow:hidden;border-left:2px solid transparent;transition:border-color .3s}
@@ -193,8 +293,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
 #coords{position:fixed;bottom:1.5rem;left:1.5rem;z-index:50;font-family:var(--mono);font-size:.55rem;color:var(--muted);letter-spacing:.1em;pointer-events:none}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
-.reveal.in{opacity:1;transform:translateY(0)}
+.reveal{animation:revealUp .6s cubic-bezier(.22,1,.36,1) both}
+@keyframes revealUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 /* HERO ANIM */
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -207,6 +307,12 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
 /* TYPEWRITER CURSOR */
 .tw::after{content:'_';color:var(--yellow);animation:blink-c .8s step-end infinite}
 @keyframes blink-c{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── TOUCH — cursor devre dışı ── */
+@media(hover:none){
+  body{cursor:auto}
+  #cursor,#cursor-ring,#coords{display:none}
+}
 
 /* LANG TRANSITION */
 [data-tr],[data-en]{transition:opacity .2s}
@@ -232,7 +338,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
       <span id="l-tr" class="active">TR</span>
       <span id="l-en">EN</span>
     </div>
-    <a href="mailto:kayrabasar@example.com" class="nav-cta" data-tr="İletişime Geç" data-en="Contact">İletişime Geç</a>
+    <a href="mailto:krdbsr@gmail.com" class="nav-cta" data-tr="İletişime Geç" data-en="Contact">İletişime Geç</a>
   </div>
 </nav>
 
@@ -254,6 +360,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
     <div class="blueprint-corner tl"></div><div class="blueprint-corner tr"></div>
     <div class="blueprint-corner bl"></div><div class="blueprint-corner br"></div>
     <div class="sys-row"><span class="sys-key">STATUS</span><span class="sys-val accent" data-tr="● STAJ BAŞVURULARINDA AKTİF" data-en="● AVAILABLE FOR INTERNSHIP">● STAJ BAŞVURULARINDA AKTİF</span></div>
+    <div class="sys-row"><span class="sys-key">EMAIL</span><span class="sys-val"><a href="mailto:krdbsr@gmail.com" style="color:var(--yellow-dim);text-decoration:none">krdbsr@gmail.com</a></span></div>
     <div class="sys-row"><span class="sys-key" data-tr="ÜNİVERSİTE" data-en="UNIVERSITY">ÜNİVERSİTE</span><span class="sys-val">Manisa Celal Bayar Üniversitesi</span></div>
     <div class="sys-row"><span class="sys-key" data-tr="PROGRAMLAR" data-en="PROGRAMS">PROGRAMLAR</span><span class="sys-val" data-tr="CS + E.E. Yan Dal (Çift Program)" data-en="CS + E.E. Minor (Dual Program)">CS + E.E. Yan Dal (Çift Program)</span></div>
     <div class="sys-row"><span class="sys-key" data-tr="ARAŞTIRMA" data-en="RESEARCH">ARAŞTIRMA</span><span class="sys-val accent">TÜBİTAK 2209-B · Aktif</span></div>
@@ -261,15 +368,121 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
     <div class="sys-row"><span class="sys-key">TARGET TRL</span><span class="sys-val accent">3 → 5 (AMYS Prototype)</span></div>
     <div class="sys-row"><span class="sys-key" data-tr="SERTİFİKALAR" data-en="CERTIFICATIONS">SERTİFİKALAR</span><span class="sys-val">9 (Amazon×6, Erasmus+, MEB×2)</span></div>
     <div class="sys-row"><span class="sys-key" data-tr="KONUM" data-en="LOCATION">KONUM</span><span class="sys-val">Manisa, Türkiye · GMT+3</span></div>
+    <div class="sys-row">
+      <span class="sys-key" data-tr="DİLLER" data-en="LANGUAGES">DİLLER</span>
+      <span class="sys-val" style="display:flex;flex-direction:column;gap:.35rem;align-items:flex-end">
+        <span style="display:flex;align-items:center;gap:.5rem;font-size:.6rem">
+          <span style="color:var(--muted)" data-tr="Türkçe · Anadil" data-en="Turkish · Native">Türkçe · Anadil</span>
+          <span style="display:flex;gap:2px">
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+          </span>
+        </span>
+        <span style="display:flex;align-items:center;gap:.5rem;font-size:.6rem">
+          <span style="color:var(--muted)" data-tr="İngilizce · B2–C1" data-en="English · B2–C1">İngilizce · B2–C1</span>
+          <span style="display:flex;gap:2px">
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+            <span style="width:18px;height:3px;background:var(--yellow);border-radius:2px"></span>
+            <span style="width:18px;height:3px;background:rgba(255,215,0,.2);border-radius:2px"></span>
+          </span>
+        </span>
+      </span>
+    </div>
   </div>
 </section>
+
+<!-- ═══ 00 HAKKIMDA ═══ -->
+<div class="s-marker"><span class="num">00</span><span data-tr="Hakkımda" data-en="About Me">Hakkımda</span></div>
+
+<div class="panel reveal" style="animation-delay:0.04s" data-label="BIO · KBK">
+  <div class="proj-num" style="font-size:3rem;opacity:.03">BIO</div>
+  <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem" class="about-grid">
+
+    <div>
+      <div class="panel-sub" data-tr="Mühendis · Araştırmacı · Lider" data-en="Engineer · Researcher · Leader">Mühendis · Araştırmacı · Lider</div>
+      <p class="panel-body" style="margin-top:.75rem"
+         data-tr="MCBÜ Bilgisayar Mühendisliği öğrencisi olarak, yazılım dünyasının analitik gücünü Elektrik-Elektronik Mühendisliği Yan Dal programıyla birleştirerek donanım ve yazılımın kesişim noktasında uzmanlaşıyorum. Kariyerimi Yapay Zeka, Veri Bilimi ve Robotik alanlarında somut, sanayi odaklı ve toplumsal fayda sağlayan projelere odaklanarak inşa ediyorum."
+         data-en="As a Computer Engineering student at MCBÜ, I specialize at the intersection of hardware and software by combining the analytical power of software engineering with an Electrical Engineering minor. I am building my career around concrete, industry-focused and socially beneficial projects in Artificial Intelligence, Data Science and Robotics.">
+        MCBÜ Bilgisayar Mühendisliği öğrencisi olarak, yazılım dünyasının analitik gücünü Elektrik-Elektronik Mühendisliği Yan Dal programıyla birleştirerek donanım ve yazılımın kesişim noktasında uzmanlaşıyorum. Kariyerimi Yapay Zeka, Veri Bilimi ve Robotik alanlarında somut, sanayi odaklı ve toplumsal fayda sağlayan projelere odaklanarak inşa ediyorum.
+      </p>
+      <p class="panel-body" style="margin-top:1rem"
+         data-tr="TÜBİTAK 2209-B kapsamında LSTM derin öğrenme modelleri, ESP32 ve MQTT protokolüyle akıllı sistem prototipleri geliştiriyorum. Teknik yetkinliğimi Amazon sertifikalı Java, Python ve uygulama geliştirme süreçleriyle de destekliyorum."
+         data-en="Under TÜBİTAK 2209-B, I develop smart system prototypes using LSTM deep learning models, ESP32 and the MQTT protocol. I further support my technical competencies with Amazon-certified Java, Python and application development processes.">
+        TÜBİTAK 2209-B kapsamında LSTM derin öğrenme modelleri, ESP32 ve MQTT protokolüyle akıllı sistem prototipleri geliştiriyorum. Teknik yetkinliğimi Amazon sertifikalı Java, Python ve uygulama geliştirme süreçleriyle de destekliyorum.
+      </p>
+      <p class="panel-body" style="margin-top:1rem;color:var(--yellow-dim)"
+         data-tr="Sadece kod yazan değil — kriz anlarını yöneten ve topluluklara yön veren bir lider olmayı hedefliyorum. Teknik becerilerimi dinamik bir ekibe katarak yenilikçi çözümler üretmek için sabırsızlanıyorum."
+         data-en="Not just a coder — I aim to be a leader who manages crises and gives direction to communities. I look forward to contributing my technical skills to a dynamic team and producing innovative solutions.">
+        Sadece kod yazan değil — kriz anlarını yöneten ve topluluklara yön veren bir lider olmayı hedefliyorum. Teknik becerilerimi dinamik bir ekibe katarak yenilikçi çözümler üretmek için sabırsızlanıyorum.
+      </p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:1.25rem;justify-content:center">
+
+      <!-- LANGUAGE BARS -->
+      <div>
+        <div class="panel-sub" style="margin-bottom:.9rem" data-tr="Dil Yeterliliği" data-en="Language Proficiency">Dil Yeterliliği</div>
+        <div style="display:flex;flex-direction:column;gap:.8rem">
+
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+              <span style="font-family:var(--mono);font-size:.6rem;color:var(--text)" data-tr="Türkçe" data-en="Turkish">Türkçe</span>
+              <span style="font-family:var(--mono);font-size:.55rem;color:var(--yellow)" data-tr="Anadil" data-en="Native">Anadil</span>
+            </div>
+            <div style="height:3px;background:var(--border);border-radius:2px;overflow:hidden">
+              <div style="height:100%;width:100%;background:var(--yellow);border-radius:2px"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+              <span style="font-family:var(--mono);font-size:.6rem;color:var(--text)" data-tr="İngilizce" data-en="English">İngilizce</span>
+              <span style="font-family:var(--mono);font-size:.55rem;color:var(--yellow-dim)">B2 – C1</span>
+            </div>
+            <div style="height:3px;background:var(--border);border-radius:2px;overflow:hidden">
+              <div style="height:100%;width:82%;background:linear-gradient(90deg,var(--yellow),rgba(255,215,0,.5));border-radius:2px"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FOCUS AREAS -->
+      <div>
+        <div class="panel-sub" style="margin-bottom:.9rem" data-tr="Odak Alanları" data-en="Focus Areas">Odak Alanları</div>
+        <div class="tags" style="margin-top:0">
+          <span class="tag">Yapay Zeka · AI</span>
+          <span class="tag" data-tr="Veri Bilimi" data-en="Data Science">Veri Bilimi</span>
+          <span class="tag">Robotik</span>
+          <span class="tag">IoT</span>
+          <span class="tag" data-tr="Gömülü Sistemler" data-en="Embedded Systems">Gömülü Sistemler</span>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div>
+        <div class="panel-sub" style="margin-bottom:.75rem" data-tr="İletişim" data-en="Contact">İletişim</div>
+        <a href="mailto:krdbsr@gmail.com" style="font-family:var(--mono);font-size:.65rem;color:var(--yellow-dim);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .2s"
+           onmouseenter="this.style.color='var(--yellow)'" onmouseleave="this.style.color='var(--yellow-dim)'">
+          <i class="fas fa-envelope" style="font-size:.7rem"></i> krdbsr@gmail.com
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- ═══ 01 PROJECTS ═══ -->
 <div class="s-marker"><span class="num">01</span><span data-tr="Teknik Projeler" data-en="Technical Projects">Teknik Projeler</span></div>
 
 <div class="grid-7-5" style="margin-bottom:1px">
 
-  <div class="panel reveal" data-label="PROJECT_A · INDUSTRIAL IOT">
+  <div class="panel reveal" style="animation-delay:0.00s" data-label="PROJECT_A · INDUSTRIAL IOT">
     <div class="proj-num">01</div>
     <div class="panel-sub" data-tr="TÜBİTAK 2209-B · ENM Teknoloji A.Ş. İş Birliği" data-en="TÜBİTAK 2209-B · ENM Technology Co. Collaboration">TÜBİTAK 2209-B · ENM Teknoloji A.Ş. İş Birliği</div>
     <div class="panel-title">AMYS</div>
@@ -293,7 +506,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
     </div>
   </div>
 
-  <div class="panel reveal" data-label="PROJECT_B · COMPUTER VISION">
+  <div class="panel reveal" style="animation-delay:0.07s" data-label="PROJECT_B · COMPUTER VISION">
     <div class="proj-num">02</div>
     <div class="panel-sub">HCI · OpenCV · MediaPipe</div>
     <div class="panel-title">Virtual Mouse AI</div>
@@ -318,23 +531,42 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
 <!-- ═══ 02 LEADERSHIP ═══ -->
 <div class="s-marker" style="margin-top:4rem"><span class="num">02</span><span data-tr="Liderlik &amp; Sosyal Etki" data-en="Leadership &amp; Social Impact">Liderlik &amp; Sosyal Etki</span></div>
 
-<div class="grid-5-7">
-  <div class="ted-panel reveal" data-label="ROLE · TED EGE">
+<div class="grid-3">
+  <div class="ted-panel reveal" style="animation-delay:0.14s" data-label="ROLE · TED EGE">
     <div class="ted-bg">TED</div>
     <div class="panel-sub" style="margin-top:1.5rem" data-tr="Bölge Başkanlığı" data-en="Regional Presidency">Bölge Başkanlığı</div>
     <div class="panel-title">TED Ege</div>
     <p class="panel-body"
-       data-tr="80+ bursiyerin operasyonel koordinasyonu. 40 kişilik GSB ekip liderliği. Bütçe, etkinlik ve kriz yönetimi."
-       data-en="Operational coordination of 80+ scholars. Leadership of a 40-person team. Budget, event and crisis management.">
-      80+ bursiyerin operasyonel koordinasyonu. 40 kişilik GSB ekip liderliği. Bütçe, etkinlik ve kriz yönetimi.
+       data-tr="Türk Eğitim Derneği kapsamında tam eğitim bursu almaya hak kazanmış, Ege Bölgesi'ndeki öğrencilerin koordinasyonundan sorumluyum. Bursiyerlerin idari süreçlerinin takibi, sosyal etkinlikler aracılığıyla topluluk ruhunun güçlendirilmesi ve öğrencilerin ihtiyaçları doğrultusunda rehberlik sağlıyorum."
+       data-en="Responsible for the coordination of full-scholarship recipients of the Turkish Education Association across the Aegean Region. I oversee the administrative processes of scholars, strengthen community spirit through social events, and provide guidance aligned with students' needs.">
+      Türk Eğitim Derneği kapsamında tam eğitim bursu almaya hak kazanmış, Ege Bölgesi'ndeki öğrencilerin koordinasyonundan sorumluyum. Bursiyerlerin idari süreçlerinin takibi, sosyal etkinlikler aracılığıyla topluluk ruhunun güçlendirilmesi ve öğrencilerin ihtiyaçlarına yönelik rehberlik sağlıyorum.
     </p>
     <div class="stats">
-      <div><div class="stat-n">80+</div><div class="stat-l" data-tr="Bursiyer" data-en="Scholars">Bursiyer</div></div>
-      <div><div class="stat-n">40</div><div class="stat-l" data-tr="GSB Ekibi" data-en="GSB Team">GSB Ekibi</div></div>
+      <div><div class="stat-n">80+</div><div class="stat-l" data-tr="Tam Burslu Öğrenci" data-en="Full Scholars">Tam Burslu Öğrenci</div></div>
     </div>
   </div>
 
-  <div class="panel reveal" data-label="INITIATIVE · SOCIAL">
+  <div class="panel reveal" style="animation-delay:0.21s" data-label="ROLE · VERİ TOPLULUĞU">
+    <div class="proj-num" style="font-size:3.5rem;opacity:.04">VT</div>
+    <div class="panel-sub" style="margin-top:1.5rem"
+         data-tr="Yönetim Kurulu Üyesi &amp; Koordinatör"
+         data-en="Board Member &amp; Coordinator">Yönetim Kurulu Üyesi &amp; Koordinatör</div>
+    <div class="panel-title" style="font-size:1.75rem">Veri Topluluğu</div>
+    <p class="panel-body"
+       data-tr="TÜBİTAK Milli Teknoloji Kulüpler Birliği ve Siber Kulüpler Birliği ile kurumsal entegrasyon; resmi izin süreçleri yönetimi. Teknik geziler, seminerler ve workshoplar organizasyonu. 40 kişilik GSB ekibinin liderliği, topluluk bütçesinin hazırlanması, sosyal medya yönetimi ve tüm resmi yazışma süreçleri sorumluluğunu üstlendim."
+       data-en="Institutional integration with TÜBİTAK National Technology Clubs and Cyber Clubs; managing official permit processes. Organizing industrial field trips, seminars and workshops. Led a 40-person GSB team, prepared the community budget, managed social media and handled all official correspondence.">
+      TÜBİTAK Milli Teknoloji Kulüpler Birliği ve Siber Kulüpler Birliği ile kurumsal entegrasyon; resmi izin süreçleri yönetimi. Teknik geziler, seminerler ve workshoplar organizasyonu. 40 kişilik GSB ekibinin liderliği, topluluk bütçesinin hazırlanması, sosyal medya yönetimi ve tüm resmi yazışma süreçleri sorumluluğunu üstlendim.
+    </p>
+    <div class="tags">
+      <span class="tag" data-tr="GSB Ekip Liderliği · 40 Kişi" data-en="GSB Team Lead · 40 People">GSB Ekip Liderliği · 40 Kişi</span>
+      <span class="tag" data-tr="Bütçe Yönetimi" data-en="Budget Management">Bütçe Yönetimi</span>
+      <span class="tag" data-tr="TÜBİTAK Entegrasyon" data-en="TÜBİTAK Integration">TÜBİTAK Entegrasyon</span>
+      <span class="tag" data-tr="Resmi Yazışmalar" data-en="Official Correspondence">Resmi Yazışmalar</span>
+      <span class="tag" data-tr="Etkinlik Organizasyonu" data-en="Event Organization">Etkinlik Organizasyonu</span>
+    </div>
+  </div>
+
+  <div class="panel reveal" style="animation-delay:0.28s" data-label="INITIATIVE · SOCIAL">
     <div class="panel-sub" style="margin-top:1.5rem" data-tr="Sosyal Girişimcilik · Kurucu Ortak" data-en="Social Entrepreneurship · Co-Founder">Sosyal Girişimcilik · Kurucu Ortak</div>
     <div class="panel-title">Kıvılcım Kütüphanesi</div>
     <p class="panel-body"
@@ -355,17 +587,17 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
 <div class="s-marker" style="margin-top:4rem"><span class="num">03</span><span data-tr="Eğitim &amp; Programlar" data-en="Education &amp; Programs">Eğitim &amp; Programlar</span></div>
 
 <div class="grid-3">
-  <div class="panel reveal" data-label="EDU_01">
+  <div class="panel reveal" style="animation-delay:0.35s" data-label="EDU_01">
     <div class="panel-sub" style="margin-top:1.5rem" data-tr="2024 → Günümüz" data-en="2024 → Present">2024 → Günümüz</div>
     <div class="panel-title" style="font-size:1.6rem" data-tr="Bilgisayar Mühendisliği" data-en="Computer Engineering">Bilgisayar Mühendisliği</div>
     <p class="panel-body">Manisa Celal Bayar Üniversitesi</p>
   </div>
-  <div class="panel reveal" data-label="EDU_02">
+  <div class="panel reveal" style="animation-delay:0.42s" data-label="EDU_02">
     <div class="panel-sub" style="margin-top:1.5rem" data-tr="Yan Dal · Aktif" data-en="Minor · Active">Yan Dal · Aktif</div>
     <div class="panel-title" style="font-size:1.6rem" data-tr="E.E. Mühendisliği" data-en="Electrical Engineering">E.E. Mühendisliği</div>
     <p class="panel-body" data-tr="Donanım &amp; Sinyal İşleme Odağı" data-en="Hardware &amp; Signal Processing Focus">Donanım &amp; Sinyal İşleme Odağı</p>
   </div>
-  <div class="panel reveal" data-label="EDU_03">
+  <div class="panel reveal" style="animation-delay:0.49s" data-label="EDU_03">
     <div class="panel-sub" style="margin-top:1.5rem" data-tr="Erasmus+ · Tem–Ağu 2025" data-en="Erasmus+ · Jul–Aug 2025">Erasmus+ · Tem–Ağu 2025</div>
     <div class="panel-title" style="font-size:1.6rem">Youthpass</div>
     <p class="panel-body" data-tr="TED Üniversitesi · Cultural Ambassadors · Ankara · 41 Katılımcı" data-en="TED University · Cultural Ambassadors · Ankara · 41 Participants">TED Üniversitesi · Cultural Ambassadors · Ankara · 41 Katılımcı</p>
@@ -376,7 +608,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
 <div class="s-marker" style="margin-top:4rem"><span class="num">04</span><span data-tr="Sertifikalar" data-en="Certifications">Sertifikalar</span></div>
 
 <div class="grid-2">
-  <div class="panel reveal" data-label="CERTS · AMAZON × COURSERA">
+  <div class="panel reveal" style="animation-delay:0.56s" data-label="CERTS · AMAZON × COURSERA">
     <div style="margin-top:1.5rem"></div>
     <div class="cert-list">
       <div class="cert-row"><div class="cert-num">01</div><div class="cert-info-wrap"><div class="cert-n">Data Structures &amp; Algorithms</div><div class="cert-iss">Amazon · Coursera</div></div><div class="cert-yr">Aug 2025<a class="cert-link" href="https://coursera.org/verify/2F5L9PV2FIH4" target="_blank">↗</a></div></div>
@@ -387,7 +619,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
       <div class="cert-row"><div class="cert-num">06</div><div class="cert-info-wrap"><div class="cert-n">Application Development</div><div class="cert-iss">Amazon · Coursera</div></div><div class="cert-yr">Sep 2025<a class="cert-link" href="https://coursera.org/verify/P4WB1WY9X7EA" target="_blank">↗</a></div></div>
     </div>
   </div>
-  <div class="panel reveal" data-label="CERTS · OTHER">
+  <div class="panel reveal" style="animation-delay:0.63s" data-label="CERTS · OTHER">
     <div style="margin-top:1.5rem"></div>
     <div class="cert-list">
       <div class="cert-row"><div class="cert-num">07</div><div class="cert-info-wrap"><div class="cert-n">Erasmus+ Youthpass</div><div class="cert-iss" data-tr="TED Üniversitesi · CABS · 41 Katılımcı" data-en="TED University · CABS · 41 Participants">TED Üniversitesi · CABS · 41 Katılımcı</div></div><div class="cert-yr">2025</div></div>
@@ -400,7 +632,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
 <!-- ═══ 05 SKILLS ═══ -->
 <div class="s-marker" style="margin-top:4rem"><span class="num">05</span><span data-tr="Yetkinlikler" data-en="Technical Skills">Yetkinlikler</span></div>
 
-<div class="panel reveal" data-label="TECH_STACK" style="padding-bottom:1.5rem">
+<div class="panel reveal" style="animation-delay:0.70s" data-label="TECH_STACK" style="padding-bottom:1.5rem">
   <div style="margin-top:1.5rem"></div>
   <div class="skill-matrix">
 
@@ -468,50 +700,36 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
       <span class="skill-name">Git</span>
     </div>
 
-    <!-- Linux -->
-    <div class="skill-cell">
-      <div class="skill-logo">
-        <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M225.44 190.575c-3.024-9.464-8.232-13.528-12.6-17.024-2.268-1.84-4.409-3.567-6.244-6.15-1.979-2.8-2.74-6.483-3.527-10.282-1.26-6.128-2.67-13.044-9.082-18.32-5.044-4.187-11.485-5.952-18.3-7.814-5.327-1.47-10.83-2.99-15.693-5.97-6.624-4.022-11.208-11.218-15.64-18.18-4.327-6.793-8.402-13.21-14.218-17.052-5.374-3.554-11.29-4.03-16.944-4.487-4.59-.372-8.934-.723-12.62-2.75-4.34-2.38-7.55-6.93-10.9-11.67-4.2-5.978-8.538-12.16-16.004-14.988-7.084-2.67-14.62-.854-21.916.904-5.8 1.403-11.275 2.729-15.856 1.638-3.818-.918-7.31-3.566-10.974-6.34-5.42-4.1-11.028-8.34-19.207-8.178-8.168.156-16.03 4.663-21.77 8.977-5.003 3.756-8.718 7.67-10.085 10.83-1.64 3.797-.634 7.38.413 9.93.702 1.69 1.553 2.986 2.138 3.856a77.31 77.31 0 0 0 .614.876l.2.277-.01.128-.08.867-.047.55.303.46c.22.33.44.657.658.979.576.858 1.117 1.663 1.532 2.502.73 1.48 1.018 2.966.696 4.853-.194 1.13-.644 2.3-1.08 3.43-.556 1.43-1.124 2.901-1.262 4.48-.276 3.146 1.029 6.133 2.29 9.015.64 1.456 1.3 2.96 1.738 4.447.458 1.558.542 2.94.263 4.384-.282 1.467-1.002 2.988-1.766 4.595-1.26 2.64-2.567 5.368-2.556 8.58.007 2.09.608 4.032 1.188 5.91.424 1.36.82 2.646.91 3.913.12 1.667-.314 3.473-.843 5.574-.694 2.72-1.48 5.803-1.21 9.47.262 3.565 1.623 7.04 2.938 10.393.995 2.543 1.935 4.945 2.322 7.296.392 2.385.164 4.605-.71 7.134-.664 1.94-1.623 3.893-2.548 5.782-1.695 3.44-3.296 6.69-3.39 10.295-.065 2.484.677 4.816 1.395 7.067.683 2.152 1.39 4.376 1.39 6.713 0 .924-.104 1.905-.203 2.85-.248 2.387-.505 4.855.644 7.058 1.282 2.44 3.983 3.866 6.593 5.245 2.1 1.105 4.087 2.15 5.416 3.56 1.245 1.32 1.928 3.047 2.65 4.888.876 2.233 1.869 4.764 4.178 6.702 2.34 1.962 5.225 2.576 8.012 3.17 2.065.44 4.017.857 5.61 1.747 2.016 1.116 3.537 3.083 5.107 5.12 2.338 3.026 4.993 6.455 10.047 8.008 4.682 1.44 9.727.454 14.61-.502 3.773-.73 7.336-1.42 10.504-1.013 2.798.356 5.437 1.655 8.176 3.004 4.028 1.978 8.196 4.024 13.523 3.99 5.33-.034 9.452-2.14 13.43-4.18 2.71-1.384 5.26-2.69 8.048-3.08 3.17-.44 6.737.197 10.513.86 4.896.858 9.965 1.745 14.64.25 5.006-1.614 7.603-5.09 9.877-8.147 1.527-2.066 2.97-4.016 4.976-5.18 1.586-.914 3.548-1.37 5.625-1.85 2.796-.65 5.693-1.322 7.99-3.33 2.27-1.984 3.214-4.534 4.047-6.78.682-1.847 1.325-3.59 2.545-4.928 1.308-1.437 3.28-2.515 5.37-3.655 2.594-1.42 5.28-2.89 6.52-5.352 1.12-2.225.826-4.698.54-7.086-.16-1.366-.317-2.666-.2-3.797.148-1.443.78-2.876 1.44-4.375 1.07-2.42 2.144-4.917 1.856-7.945zm-125.286-118.53c-.2-1.77-.086-3.577.326-5.236.11.197.228.39.352.577 2.394 3.615 6.452 5.89 11.547 6.41 2.46.254 5.097.143 7.648.034 2.89-.122 5.896-.25 8.506.27 4.29.853 7.14 3.39 8.73 7.75.518 1.407.803 3.024.998 4.84-3.49-1.87-6.9-3.02-10.204-3.49-7.05-.99-13.5.796-19.16 5.317-1.79 1.41-3.483 3.095-5.12 5.003-.66-2.226-1.18-4.503-1.54-6.756-.706-4.384-.675-8.745-.083-11.72z" fill="#fff"/><path d="M128.003 8.038C62.034 8.038 8.038 62.034 8.038 128c0 65.966 54 119.965 119.965 119.965S247.96 193.966 247.96 128C247.96 62.034 193.972 8.038 128.003 8.038z" fill="#000"/><path d="M167.97 147.86c-5.044-4.187-11.485-5.952-18.3-7.814-5.327-1.47-10.83-2.99-15.693-5.97-6.624-4.022-11.208-11.218-15.64-18.18-4.327-6.793-8.402-13.21-14.218-17.052-5.374-3.554-11.29-4.03-16.944-4.487-4.59-.372-8.934-.723-12.62-2.75-4.34-2.38-7.55-6.93-10.9-11.67C59.335 74.035 55 67.85 47.534 65.02c-7.084-2.67-14.62-.854-21.916.904-5.8 1.403-11.275 2.729-15.856 1.638.5 1.75 1.046 3.48 1.644 5.193a34.655 34.655 0 0 0 3.524-1.103c6.617-2.63 13.114-3.965 19.32-3.965 2.546 0 5.07.255 7.504.795 7.226 1.607 12.77 5.968 17.13 13.337 3.57 6.02 5.547 13.13 7.457 20.01 1.965 7.054 3.994 14.345 8.154 19.974 4.578 6.22 10.72 9.37 16.653 12.413 4.09 2.075 7.95 4.04 11.134 6.796 3.804 3.29 5.79 7.26 6.9 11.32-3.49-1.87-6.9-3.02-10.204-3.49-7.05-.99-13.5.796-19.16 5.317-5.24 4.18-9.23 10.41-12.7 15.93-2.87 4.57-5.58 8.9-8.765 11.48-3.74 3.03-8.455 3.848-12.94 4.63-6.86 1.2-13.952 2.443-18.073 9.273a17.484 17.484 0 0 0-2.328 7.71c1.49 2.66 3.084 5.252 4.773 7.78.386-3.856 1.862-7.36 4.255-10.154 3.386-3.97 7.916-5.54 12.296-7.058 5.94-2.072 12.085-4.216 15.906-10.804 2.78-4.787 4.188-10.383 5.55-15.79 1.39-5.5 2.828-11.19 5.75-15.605 4.235-6.41 10.31-8.57 16.7-6.47 2.69.88 5.367 2.612 7.96 5.14.78.77 1.548 1.62 2.298 2.54-3.278 4.487-5.028 9.918-5.11 15.754-.113 7.97 2.757 16.15 7.777 22.42 5.086 6.354 12.068 10.116 19.62 10.587 7.37.46 14.654-2.47 20.52-8.256 5.683-5.607 9.528-13.508 10.508-21.915.475-4.03.29-8.113-.528-12.018 4.78 3.4 8.04 8.266 9.97 14.93 1.48 5.11 1.682 10.852 1.876 16.41.286 8.235.58 16.75 4.88 23.55 4.39 6.94 12.048 10.944 18.68 14.348l.1.052c5.42 2.826 10.56 5.5 13.59 9.704.618.862 1.17 1.803 1.654 2.817a119.35 119.35 0 0 0 7.05-5.6c-.743-.877-1.537-1.712-2.386-2.508-4.4-4.134-9.98-6.603-15.37-8.997-6.54-2.9-13.3-5.898-17.267-11.945-3.573-5.42-4.63-12.526-5.6-19.37-.78-5.485-1.585-11.15-3.83-16.2-3.214-7.2-8.763-11.933-16.04-13.756a23.684 23.684 0 0 0-1.52-4.68c-2.12-5.22-5.89-9.283-11.21-12.07z" fill="#fff"/></svg>
-      </div>
-      <span class="skill-name">Linux</span>
-    </div>
-
-    <!-- LSTM / Deep Learning -->
+    <!-- Linux — Tux Penguin -->
     <div class="skill-cell">
       <div class="skill-logo">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="50" r="7" fill="#FF6F00"/>
-          <circle cx="50" cy="20" r="7" fill="#FF6F00"/>
-          <circle cx="50" cy="80" r="7" fill="#FF6F00"/>
-          <circle cx="80" cy="50" r="7" fill="#FF6F00"/>
-          <circle cx="50" cy="50" r="8" fill="#FF9800"/>
-          <line x1="20" y1="50" x2="50" y2="50" stroke="#FF6F00" stroke-width="2.5"/>
-          <line x1="50" y1="20" x2="50" y2="50" stroke="#FF6F00" stroke-width="2.5"/>
-          <line x1="50" y1="80" x2="50" y2="50" stroke="#FF6F00" stroke-width="2.5"/>
-          <line x1="80" y1="50" x2="50" y2="50" stroke="#FF6F00" stroke-width="2.5"/>
-          <line x1="20" y1="50" x2="50" y2="20" stroke="#FF6F00" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <line x1="20" y1="50" x2="50" y2="80" stroke="#FF6F00" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <line x1="80" y1="50" x2="50" y2="20" stroke="#FF6F00" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <line x1="80" y1="50" x2="50" y2="80" stroke="#FF6F00" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <!-- body (dark with visible outline) -->
+          <ellipse cx="50" cy="65" rx="26" ry="28" fill="#1a1a2e" stroke="#555" stroke-width="1.5"/>
+          <!-- white belly -->
+          <ellipse cx="50" cy="71" rx="15" ry="18" fill="#f0ead0"/>
+          <!-- head -->
+          <ellipse cx="50" cy="28" rx="18" ry="20" fill="#1a1a2e" stroke="#555" stroke-width="1.5"/>
+          <!-- yellow face patch -->
+          <ellipse cx="50" cy="30" rx="11" ry="9" fill="#e8a020"/>
+          <!-- eyes -->
+          <circle cx="44" cy="25" r="4.5" fill="#fff"/>
+          <circle cx="56" cy="25" r="4.5" fill="#fff"/>
+          <circle cx="45" cy="26" r="2.5" fill="#111"/>
+          <circle cx="57" cy="26" r="2.5" fill="#111"/>
+          <circle cx="45.5" cy="25" r="1" fill="#fff"/>
+          <circle cx="57.5" cy="25" r="1" fill="#fff"/>
+          <!-- beak -->
+          <polygon points="50,33 45,38 55,38" fill="#ff9900"/>
+          <!-- wings (lighter so visible) -->
+          <ellipse cx="22" cy="65" rx="8" ry="18" fill="#2a2a45" stroke="#555" stroke-width="1" transform="rotate(-12 22 65)"/>
+          <ellipse cx="78" cy="65" rx="8" ry="18" fill="#2a2a45" stroke="#555" stroke-width="1" transform="rotate(12 78 65)"/>
+          <!-- feet -->
+          <ellipse cx="41" cy="94" rx="9" ry="4" fill="#ff9900"/>
+          <ellipse cx="59" cy="94" rx="9" ry="4" fill="#ff9900"/>
         </svg>
       </div>
-      <span class="skill-name">LSTM / DL</span>
-    </div>
-
-    <!-- MediaPipe -->
-    <div class="skill-cell">
-      <div class="skill-logo">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 8 L92 32 L92 68 L50 92 L8 68 L8 32 Z" fill="none" stroke="#00BCD4" stroke-width="4"/><path d="M50 20 L80 36 L80 64 L50 80 L20 64 L20 36 Z" fill="none" stroke="#00BCD4" stroke-width="3"/><circle cx="50" cy="50" r="14" fill="#00BCD4"/><circle cx="50" cy="50" r="6" fill="#fff"/></svg>
-      </div>
-      <span class="skill-name">MediaPipe</span>
-    </div>
-
-    <!-- Leaflet.js -->
-    <div class="skill-cell">
-      <div class="skill-logo">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 8 C50 8 22 35 22 58 C22 74.5 34.5 87 50 87 C65.5 87 78 74.5 78 58 C78 35 50 8 50 8Z" fill="#199900"/><path d="M50 87 L46 97 L54 97 Z" fill="#199900"/><circle cx="50" cy="58" r="10" fill="#fff" opacity=".6"/></svg>
-      </div>
-      <span class="skill-name">Leaflet.js</span>
+      <span class="skill-name">Linux</span>
     </div>
 
   </div>
@@ -528,30 +746,32 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
   </div>
 </footer>
 
-<script>
-/* ─── CURSOR ─────────────────────────────── */
-const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring'),coords=document.getElementById('coords');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cur.style.left=mx+'px';cur.style.top=my+'px';
-  coords.textContent=`X:${String(mx).padStart(4,'0')} Y:${String(my).padStart(4,'0')}`;
-});
-(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
-document.querySelectorAll('a,button,.panel,.cert-row,.skill-cell').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(255,215,0,.8)'});
-  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(255,215,0,.4)'});
-});
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ─── CURSOR — sadece mouse cihazlarda ─── */
+if(window.matchMedia('(hover:hover)').matches){
+  const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring'),coords=document.getElementById('coords');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cur.style.left=mx+'px';cur.style.top=my+'px';
+    if(coords)coords.textContent=`X:${String(mx).padStart(4,'0')} Y:${String(my).padStart(4,'0')}`;
+  });
+  (function animRing(){
+    rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('a,button,.panel,.ted-panel,.cert-row,.skill-cell').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='rgba(255,215,0,.9)'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(255,215,0,.35)'});
+  });
+}
 
 /* ─── CLOCK ──────────────────────────────── */
 function tick(){const t=new Date().toLocaleTimeString('tr-TR');document.getElementById('nclock').textContent=t;document.getElementById('fclock').textContent=t;}
 setInterval(tick,1000);tick();
 
-/* ─── REVEAL ─────────────────────────────── */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);io.unobserve(e.target);}});
-},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* ─── REVEAL — handled by CSS animation ─── */
 
 /* ─── TYPEWRITER ─────────────────────────── */
 const tw=document.querySelector('.tw');
@@ -601,10 +821,3 @@ document.getElementById('langBtn').addEventListener('click',e=>{
   const newLang=clicked.id==='l-tr'?'tr':'en';
   if(newLang!==lang) applyLang(newLang);
 });
-
-// restore saved lang
-const savedLang=localStorage.getItem('kbk-lang');
-if(savedLang&&savedLang!=='tr') applyLang(savedLang);
-</script>
-</body>
-</html>
