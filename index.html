@@ -48,8 +48,27 @@ html{scroll-behavior:smooth}
 body{background:var(--black);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden;cursor:none}
 
 /* CURSOR */
-#cursor{position:fixed;width:8px;height:8px;background:var(--yellow);border-radius:50%;pointer-events:none;z-index:9999;left:-20px;top:-20px;transform:translate(-50%,-50%)}
-#cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid var(--yellow-dim);border-radius:50%;pointer-events:none;z-index:9998;left:-20px;top:-20px;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+#cursor{
+  position:fixed;
+  width:8px;height:8px;
+  background:var(--yellow);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  left:0;top:0;
+  will-change:transform;
+}
+#cursor-ring{
+  position:fixed;
+  width:36px;height:36px;
+  border:1.5px solid rgba(255,215,0,.5);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9998;
+  left:0;top:0;
+  will-change:transform;
+  transition:width .15s ease,height .15s ease,border-color .15s ease;
+}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:2px}
 
 /* BG */
@@ -338,7 +357,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
       <span id="l-tr" class="active">TR</span>
       <span id="l-en">EN</span>
     </div>
-    <a href="mailto:krdbsr@gmail.com" class="nav-cta" data-tr="İletişime Geç" data-en="Contact">İletişime Geç</a>
+    <a href="/cdn-cgi/l/email-protection#bdd6cfd9dfcecffddad0dcd4d193ded2d0" class="nav-cta" data-tr="İletişime Geç" data-en="Contact">İletişime Geç</a>
   </div>
 </nav>
 
@@ -360,7 +379,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
     <div class="blueprint-corner tl"></div><div class="blueprint-corner tr"></div>
     <div class="blueprint-corner bl"></div><div class="blueprint-corner br"></div>
     <div class="sys-row"><span class="sys-key">STATUS</span><span class="sys-val accent" data-tr="● STAJ BAŞVURULARINDA AKTİF" data-en="● AVAILABLE FOR INTERNSHIP">● STAJ BAŞVURULARINDA AKTİF</span></div>
-    <div class="sys-row"><span class="sys-key">EMAIL</span><span class="sys-val"><a href="mailto:krdbsr@gmail.com" style="color:var(--yellow-dim);text-decoration:none">krdbsr@gmail.com</a></span></div>
+    <div class="sys-row"><span class="sys-key">EMAIL</span><span class="sys-val"><a href="/cdn-cgi/l/email-protection#d0bba2b4b2a3a290b7bdb1b9bcfeb3bfbd" style="color:var(--yellow-dim);text-decoration:none"><span class="__cf_email__" data-cfemail="86edf4e2e4f5f4c6e1ebe7efeaa8e5e9eb">[email&#160;protected]</span></a></span></div>
     <div class="sys-row"><span class="sys-key" data-tr="ÜNİVERSİTE" data-en="UNIVERSITY">ÜNİVERSİTE</span><span class="sys-val">Manisa Celal Bayar Üniversitesi</span></div>
     <div class="sys-row"><span class="sys-key" data-tr="PROGRAMLAR" data-en="PROGRAMS">PROGRAMLAR</span><span class="sys-val" data-tr="CS + E.E. Yan Dal (Çift Program)" data-en="CS + E.E. Minor (Dual Program)">CS + E.E. Yan Dal (Çift Program)</span></div>
     <div class="sys-row"><span class="sys-key" data-tr="ARAŞTIRMA" data-en="RESEARCH">ARAŞTIRMA</span><span class="sys-val accent">TÜBİTAK 2209-B · Aktif</span></div>
@@ -467,9 +486,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
       <!-- CONTACT -->
       <div>
         <div class="panel-sub" style="margin-bottom:.75rem" data-tr="İletişim" data-en="Contact">İletişim</div>
-        <a href="mailto:krdbsr@gmail.com" style="font-family:var(--mono);font-size:.65rem;color:var(--yellow-dim);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .2s"
-           onmouseenter="this.style.color='var(--yellow)'" onmouseleave="this.style.color='var(--yellow-dim)'">
-          <i class="fas fa-envelope" style="font-size:.7rem"></i> krdbsr@gmail.com
+        <a href="/cdn-cgi/l/email-protection#abc0d9cfc9d8d9ebccc6cac2c785c8c4c6" style="font-family:var(--mono);font-size:.65rem;color:var(--yellow-dim);text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .2s" onmouseenter="this.style.color='var(--yellow)'" onmouseleave="this.style.color='var(--yellow-dim)'">
+          <i class="fas fa-envelope" style="font-size:.7rem"></i> <span class="__cf_email__" data-cfemail="9ef5ecfafcedecdef9f3fff7f2b0fdf1f3">[email&#160;protected]</span>
         </a>
       </div>
 
@@ -746,26 +764,51 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ─── CURSOR — sadece mouse cihazlarda ─── */
-if(window.matchMedia('(hover:hover)').matches){
-  const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring'),coords=document.getElementById('coords');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    cur.style.left=mx+'px';cur.style.top=my+'px';
-    if(coords)coords.textContent=`X:${String(mx).padStart(4,'0')} Y:${String(my).padStart(4,'0')}`;
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ─── CURSOR ─────────────────────────────── */
+(function(){
+  const cur = document.getElementById('cursor');
+  const ring = document.getElementById('ring') || document.getElementById('cursor-ring');
+  const coords = document.getElementById('coords');
+  if(!cur || !ring) return;
+
+  let mx=0, my=0, rx=0, ry=0;
+  let isTouch = false;
+
+  // Touch tespiti — touch cihazlarda devre dışı
+  window.addEventListener('touchstart', ()=>{ isTouch=true; }, {once:true});
+
+  document.addEventListener('mousemove', e=>{
+    if(isTouch) return;
+    mx = e.clientX;
+    my = e.clientY;
+    // Nokta — anında takip
+    cur.style.transform = `translate3d(${mx-4}px,${my-4}px,0)`;
+    if(coords) coords.textContent = `X:${String(Math.round(mx)).padStart(4,'0')} Y:${String(Math.round(my)).padStart(4,'0')}`;
   });
-  (function animRing(){
-    rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
-    ring.style.left=rx+'px';ring.style.top=ry+'px';
-    requestAnimationFrame(animRing);
+
+  // Halka — yavaş takip (lerp)
+  (function lerp(){
+    rx += (mx - rx) * 0.1;
+    ry += (my - ry) * 0.1;
+    ring.style.transform = `translate3d(${rx-18}px,${ry-18}px,0)`;
+    requestAnimationFrame(lerp);
   })();
-  document.querySelectorAll('a,button,.panel,.ted-panel,.cert-row,.skill-cell').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='rgba(255,215,0,.9)'});
-    el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(255,215,0,.35)'});
+
+  // Hover efekti
+  document.querySelectorAll('a, button, .panel, .ted-panel, .cert-row, .skill-cell, .nav-cta, .lang-btn').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>{
+      ring.style.width = '52px';
+      ring.style.height = '52px';
+      ring.style.borderColor = 'rgba(255,215,0,.9)';
+    });
+    el.addEventListener('mouseleave', ()=>{
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.borderColor = 'rgba(255,215,0,.5)';
+    });
   });
-}
+})();
 
 /* ─── CLOCK ──────────────────────────────── */
 function tick(){const t=new Date().toLocaleTimeString('tr-TR');document.getElementById('nclock').textContent=t;document.getElementById('fclock').textContent=t;}
@@ -807,17 +850,4 @@ function applyLang(l){
       else{el.innerHTML=val}
     });
     // section markers
-    document.querySelectorAll('.s-marker span:last-child[data-tr]').forEach(el=>{
-      el.innerHTML=el.getAttribute(`data-${l}`)||el.innerHTML;
-    });
-    document.body.style.opacity='1';
-  },150);
-  localStorage.setItem('kbk-lang',l);
-}
-
-document.getElementById('langBtn').addEventListener('click',e=>{
-  const clicked=e.target.closest('span');
-  if(!clicked) return;
-  const newLang=clicked.id==='l-tr'?'tr':'en';
-  if(newLang!==lang) applyLang(newLang);
-});
+    document.querySelectorAll('.s-marker span:last-child[data-tr]').f
