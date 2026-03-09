@@ -50,29 +50,30 @@ body{background:var(--black);color:var(--text);font-family:var(--body);min-heigh
 /* CURSOR */
 #cursor{
   position:fixed;
-  width:8px;height:8px;
-  background:var(--yellow);
+  width:10px;height:10px;
+  background:#ffd700;
   border-radius:50%;
   pointer-events:none;
-  z-index:9999;
-  left:0;top:0;
-  will-change:transform;
+  z-index:99999;
+  top:0;left:0;
+  opacity:0;
+  transition:opacity .2s;
 }
 #cursor-ring{
   position:fixed;
-  width:36px;height:36px;
-  border:1.5px solid rgba(255,215,0,.5);
+  width:38px;height:38px;
+  border:2px solid rgba(255,215,0,.6);
   border-radius:50%;
   pointer-events:none;
-  z-index:9998;
-  left:0;top:0;
-  will-change:transform;
-  transition:width .15s ease,height .15s ease,border-color .15s ease;
+  z-index:99998;
+  top:0;left:0;
+  opacity:0;
+  transition:width .2s,height .2s,border-color .2s,opacity .2s;
 }
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:2px}
 
 /* BG */
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(rgba(255,215,0,.007) 1px,transparent 1px),linear-gradient(90deg,rgba(255,215,0,.007) 1px,transparent 1px);background-size:80px 80px,80px 80px,20px 20px,20px 20px}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),linear-gradient(var(--grid-color2,rgba(255,215,0,.007)) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color2,rgba(255,215,0,.007)) 1px,transparent 1px);background-size:80px 80px,80px 80px,20px 20px,20px 20px}
 body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px)}
 
 /* NAV */
@@ -348,7 +349,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
 <nav>
   <div class="nav-id"><span class="bracket">[</span>KBK.ENG.v2026<span class="bracket">]</span></div>
   <div class="nav-coords">
-    <span>MCBÜ · MANİSA · TR</span>
+    <span id="visitor-loc">··· · ···</span>
     <span class="live"><div class="live-dot"></div><span id="nclock">--:--:--</span></span>
   </div>
   <div class="nav-right">
@@ -357,7 +358,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
       <span id="l-tr" class="active">TR</span>
       <span id="l-en">EN</span>
     </div>
-    <a href="/cdn-cgi/l/email-protection#bdd6cfd9dfcecffddad0dcd4d193ded2d0" class="nav-cta" data-tr="İletişime Geç" data-en="Contact">İletişime Geç</a>
+    <a href="/cdn-cgi/l/email-protection#6c071e080e1f1e2c0b010d0500420f0301" class="nav-cta" data-tr="İletişime Geç" data-en="Contact">İletişime Geç</a>
   </div>
 </nav>
 
@@ -764,55 +765,95 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border2);margin-to
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ─── CURSOR ─────────────────────────────── */
 (function(){
-  const cur = document.getElementById('cursor');
-  const ring = document.getElementById('ring') || document.getElementById('cursor-ring');
-  const coords = document.getElementById('coords');
-  if(!cur || !ring) return;
+  var dot  = document.getElementById('cursor');
+  var ring = document.getElementById('cursor-ring');
+  if(!dot || !ring) return;
 
-  let mx=0, my=0, rx=0, ry=0;
-  let isTouch = false;
+  var mx=0, my=0, rx=0, ry=0, active=false;
 
-  // Touch tespiti — touch cihazlarda devre dışı
-  window.addEventListener('touchstart', ()=>{ isTouch=true; }, {once:true});
-
-  document.addEventListener('mousemove', e=>{
-    if(isTouch) return;
+  document.addEventListener('mousemove', function(e){
     mx = e.clientX;
     my = e.clientY;
-    // Nokta — anında takip
-    cur.style.transform = `translate3d(${mx-4}px,${my-4}px,0)`;
-    if(coords) coords.textContent = `X:${String(Math.round(mx)).padStart(4,'0')} Y:${String(Math.round(my)).padStart(4,'0')}`;
+
+    // Nokta anında hareket et
+    dot.style.left  = (mx - 5)  + 'px';
+    dot.style.top   = (my - 5)  + 'px';
+
+    // Koordinat göstergesi
+    var c = document.getElementById('coords');
+    if(c) c.textContent = 'X:' + String(Math.round(mx)).padStart(4,'0') + ' Y:' + String(Math.round(my)).padStart(4,'0');
+
+    // İlk harekette göster
+    if(!active){
+      active = true;
+      dot.style.opacity  = '1';
+      ring.style.opacity = '1';
+    }
   });
 
-  // Halka — yavaş takip (lerp)
-  (function lerp(){
-    rx += (mx - rx) * 0.1;
-    ry += (my - ry) * 0.1;
-    ring.style.transform = `translate3d(${rx-18}px,${ry-18}px,0)`;
+  // Halka yavaş takip
+  function lerp(){
+    rx += (mx - rx) * 0.11;
+    ry += (my - ry) * 0.11;
+    ring.style.left = (rx - 19) + 'px';
+    ring.style.top  = (ry - 19) + 'px';
     requestAnimationFrame(lerp);
-  })();
+  }
+  lerp();
 
-  // Hover efekti
-  document.querySelectorAll('a, button, .panel, .ted-panel, .cert-row, .skill-cell, .nav-cta, .lang-btn').forEach(el=>{
-    el.addEventListener('mouseenter', ()=>{
-      ring.style.width = '52px';
-      ring.style.height = '52px';
-      ring.style.borderColor = 'rgba(255,215,0,.9)';
+  // Hover büyütme
+  var hoverEls = document.querySelectorAll('a,button,.panel,.ted-panel,.cert-row,.skill-cell,.lang-btn,.nav-cta');
+  hoverEls.forEach(function(el){
+    el.addEventListener('mouseenter', function(){
+      ring.style.width        = '54px';
+      ring.style.height       = '54px';
+      ring.style.borderColor  = 'rgba(255,215,0,1)';
     });
-    el.addEventListener('mouseleave', ()=>{
-      ring.style.width = '36px';
-      ring.style.height = '36px';
-      ring.style.borderColor = 'rgba(255,215,0,.5)';
+    el.addEventListener('mouseleave', function(){
+      ring.style.width        = '38px';
+      ring.style.height       = '38px';
+      ring.style.borderColor  = 'rgba(255,215,0,.6)';
     });
+  });
+
+  // Sayfadan çıkınca gizle
+  document.addEventListener('mouseleave', function(){
+    dot.style.opacity  = '0';
+    ring.style.opacity = '0';
+    active = false;
+  });
+  document.addEventListener('mouseenter', function(){
+    if(active){
+      dot.style.opacity  = '1';
+      ring.style.opacity = '1';
+    }
   });
 })();
 
 /* ─── CLOCK ──────────────────────────────── */
-function tick(){const t=new Date().toLocaleTimeString('tr-TR');document.getElementById('nclock').textContent=t;document.getElementById('fclock').textContent=t;}
-setInterval(tick,1000);tick();
+function tick(){
+  const t = new Date().toLocaleTimeString('tr-TR');
+  document.getElementById('nclock').textContent = t;
+  document.getElementById('fclock').textContent = t;
+}
+setInterval(tick,1000); tick();
+
+/* ─── VISITOR LOCATION ───────────────────── */
+(function(){
+  const el = document.getElementById('visitor-loc');
+  if(!el) return;
+  fetch('https://ipapi.co/json/')
+    .then(r => r.json())
+    .then(d => {
+      const city = d.city || d.region || '???';
+      const country = d.country_code || '??';
+      el.textContent = `${city.toUpperCase()} · ${country}`;
+    })
+    .catch(()=>{ el.textContent = 'MCBÜ · MANİSA · TR'; });
+})();
 
 /* ─── REVEAL — handled by CSS animation ─── */
 
@@ -844,10 +885,78 @@ function applyLang(l){
   document.body.style.transition='opacity .15s';
   setTimeout(()=>{
     // swap all tagged elements
-    document.querySelectorAll(`[data-${l}]`).forEach(el=>{
-      const val=el.getAttribute(`data-${l}`);
-      if(el.tagName==='A'||el.tagName==='BUTTON'){el.textContent=val}
-      else{el.innerHTML=val}
+    document.querySelectorAll('[data-tr],[data-en]').forEach(el=>{
+      const val = el.getAttribute('data-'+l);
+      if(val === null) return;
+      if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder=val;
+      else el.innerHTML=val;
     });
-    // section markers
-    document.querySelectorAll('.s-marker span:last-child[data-tr]').f
+    // typewriter sıfırla
+    wi=0; ci=0; del=false;
+    document.body.style.opacity='1';
+    localStorage.setItem('kbk_lang',l);
+  },150);
+}
+
+// Dil butonları
+document.getElementById('l-tr').addEventListener('click',()=>applyLang('tr'));
+document.getElementById('l-en').addEventListener('click',()=>applyLang('en'));
+
+// Kayıtlı dili yükle
+const savedLang=localStorage.getItem('kbk_lang')||'tr';
+if(savedLang==='en') applyLang('en');
+
+/* ─── TEMA (Blueprint / Terminal) ────────────── */
+const themes={
+  blueprint:{
+    '--black':'#080a0e','--dark':'#0d1018','--panel':'#111520','--panel2':'#161c27',
+    '--yellow':'#ffd700','--yellow-dim':'rgba(255,215,0,.6)','--yellow-faint':'rgba(255,215,0,.08)',
+    '--text':'#d8dce8','--muted':'#5a6070','--border':'rgba(255,215,0,.12)','--border2':'rgba(255,215,0,.06)',
+    '--grid-color':'rgba(255,215,0,.07)','--grid-color2':'rgba(255,215,0,.03)',
+    name:'BLUEPRINT'
+  },
+  terminal:{
+    '--black':'#020c02','--dark':'#051405','--panel':'#071807','--panel2':'#0a1f0a',
+    '--yellow':'#00ff41','--yellow-dim':'rgba(0,255,65,.6)','--yellow-faint':'rgba(0,255,65,.07)',
+    '--text':'#b8f0b8','--muted':'#2d5c2d','--border':'rgba(0,255,65,.15)','--border2':'rgba(0,255,65,.07)',
+    '--grid-color':'rgba(0,255,65,.07)','--grid-color2':'rgba(0,255,65,.03)',
+    name:'TERMINAL'
+  }
+};
+
+let currentTheme='blueprint';
+
+function applyTheme(t){
+  currentTheme=t;
+  const th=themes[t];
+  const root=document.documentElement.style;
+  Object.entries(th).forEach(([k,v])=>{ if(k!=='name') root.setProperty(k,v); });
+  document.getElementById('theme-btn').textContent=
+    t==='blueprint' ? '◑ TERMINAL' : '◑ BLUEPRINT';
+  localStorage.setItem('kbk_theme',t);
+}
+
+// Tema butonu HTML'e enjekte et
+const themeBtn=document.createElement('button');
+themeBtn.id='theme-btn';
+themeBtn.textContent='◑ TERMINAL';
+themeBtn.style.cssText=`
+  font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;
+  border:1px solid var(--border);color:var(--muted);background:transparent;
+  padding:4px 10px;cursor:pointer;transition:all .2s;margin-right:.5rem;
+`;
+themeBtn.addEventListener('mouseenter',()=>{themeBtn.style.borderColor='var(--yellow)';themeBtn.style.color='var(--yellow)';});
+themeBtn.addEventListener('mouseleave',()=>{themeBtn.style.borderColor='var(--border)';themeBtn.style.color='var(--muted)';});
+themeBtn.addEventListener('click',()=>applyTheme(currentTheme==='blueprint'?'terminal':'blueprint'));
+
+// Butonu nav'a ekle (lang butonunun soluna)
+const langBtn=document.getElementById('langBtn');
+langBtn.parentNode.insertBefore(themeBtn,langBtn);
+
+// Kayıtlı temayı yükle
+const savedTheme=localStorage.getItem('kbk_theme')||'blueprint';
+if(savedTheme==='terminal') applyTheme('terminal');
+
+</script>
+</body>
+</html>
